@@ -1,11 +1,14 @@
 # Gaming Hub: Enhanced Xbox Games &amp; Game Pass Guide
 
-This directory contains an **enhanced** static website that showcases standout Xbox titles, highlights upcoming day‑one Game Pass releases and summarises Microsoft’s current Game Pass tiers as of early 2026. The layout has been reimagined with a modern dark theme, responsive cards and an optional contact form. Each featured game card now includes an **Add to Cart** button powered by **Snipcart**, so visitors can build a shopping cart and check out without leaving your site (once you provide a valid Snipcart API key). A **Join Game Pass** button remains below the plans table for those who want to subscribe directly through Microsoft.
+This directory contains a **massively enhanced** static website that showcases standout Xbox titles, highlights upcoming day‑one Game Pass releases and summarises Microsoft’s current Game Pass tiers as of early 2026. The layout has been reimagined with a modern dark theme, responsive cards and a host of new interactive elements including a theme‑toggle switch, search filtering, ratings, load‑more functionality and animated stats. We’ve also added dedicated sections for testimonials, a video trailer, a newsletter sign‑up, an FAQ, and more. Each featured game card includes an **Add to Cart** button powered by **Snipcart**, so visitors can build a shopping cart and check out without leaving your site (once you provide a valid Snipcart API key). A **Join Game Pass** button remains below the plans table for those who want to subscribe directly through Microsoft.
 
 ## Contents
 
-- `index.html` — the main page with a hero banner, navigation, a **Featured Games** section, an **Upcoming Releases** section, updated **Game Pass Plans** and a contact form.
-- `style.css` — styles for the new dark layout, modern typography and responsive cards.
+In addition to the original files, this version introduces extra assets and scripts:
+
+- `index.html` — the main page with a hero banner, navigation, a **Featured Games** section, an **Upcoming Releases** section, updated **Game Pass Plans**, testimonials, a video trailer, stats counters, newsletter sign‑up, FAQ and a contact form.
+- `style.css` — styles for the dark/light theme, modern typography, responsive cards and animations.
+- `script.js` — JavaScript that powers the search filter, theme toggle, load‑more feature, scroll animations, animated counters, countdown timers, scroll‑to‑top button and cookie banner.
 - `assets/hero.png` — a decorative abstract background used in the hero section (feel free to replace this image).
 
 ## Running locally
@@ -56,6 +59,21 @@ This site uses [Snipcart](https://snipcart.com/) to enable in‑page purchases a
 4. Each **Add to Cart** button has `data-item-*` attributes that define the product ID, name, price and description. You can adjust these values or add new products by following the same pattern. See Snipcart’s documentation for additional options, such as specifying item URLs, images or downloadable files.
 
 Until you provide a valid API key and configure a payment gateway, checkout will run in **test mode** and display a demo payment form. Replace the placeholder key and adjust product prices to reflect your own offerings before going live.
+
+### Obtaining a Live API key
+
+Snipcart uses two environments: **Test** and **Live**. When you’re ready to accept real payments, log in to your Snipcart dashboard, toggle **Live mode** (top centre of the dashboard) and copy your **Live API key** from **Account → API keys**. Replace the `data-api-key` value in your HTML with this live key. According to Snipcart’s documentation, switching to live mode and using your Live API key is required before real orders appear in your dashboard【479351639003140†L65-L78】.
+
+## Video Trailer Embed
+
+The “Watch Our Trailer” section uses an `<iframe>` to embed a YouTube video. Some official trailers do not allow embedding or may be restricted in certain regions, which is why the initial embed might display a “Video unavailable” message. We’ve replaced the original embed with a publicly accessible YouTube demo video (from the IFrame API sample) as a placeholder. To feature your own trailer, edit `index.html` and change the `src` of the `<iframe>` in the **Video Section** to the embed URL of any YouTube video that permits embedding. For example:
+
+```html
+<!-- Example embed replacement -->
+<iframe src="https://www.youtube-nocookie.com/embed/VIDEO_ID?rel=0" title="Your Game Trailer" frameborder="0" allowfullscreen></iframe>
+```
+
+Replace `VIDEO_ID` with the identifier from the YouTube video’s URL.
 
 ## Disclaimer
 
