@@ -11,6 +11,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <!-- Snipcart dependencies -->
+  <link rel="preconnect" href="https://app.snipcart.com">
+  <link rel="preconnect" href="https://cdn.snipcart.com">
+  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.3.5/default/snipcart.css" />
 </head>
 <body>
   <header>
@@ -21,6 +25,8 @@
         <li><a href="#upcoming">Upcoming</a></li>
         <li><a href="#subscriptions">Plans</a></li>
         <li><a href="#contact">Contact</a></li>
+        <!-- Snipcart cart link -->
+        <li><a href="#" class="snipcart-checkout">Cart (<span class="snipcart-items-count">0</span>)</a></li>
       </ul>
     </nav>
     <div class="hero">
@@ -50,56 +56,112 @@
           <div class="icon"><i class="fas fa-ghost"></i></div>
           <h3>Alan Wake 2</h3>
           <p>A surreal blend of detective procedural and survival horror where author Alan Wake fights to escape an alternate dimension.</p>
-          <a class="btn buy-btn" href="https://www.xbox.com/en-US/games/store/alan-wake-2/9pnzh065x7pv" target="_blank">Buy on Xbox Store</a>
+          <button class="btn buy-btn snipcart-add-item"
+                  data-item-id="alan-wake-2"
+                  data-item-name="Alan Wake 2"
+                  data-item-price="59.99"
+                  data-item-url="/"
+                  data-item-description="A surreal blend of detective procedural and survival horror where author Alan Wake fights to escape an alternate dimension.">
+            Add to Cart
+          </button>
         </div>
         <!-- Baldur's Gate 3 -->
         <div class="card">
           <div class="icon"><i class="fas fa-dragon"></i></div>
           <h3>Baldur’s Gate 3</h3>
           <p>A landmark role‑playing fantasy epic that offers near‑limitless narrative freedom and imaginative scope.</p>
-          <a class="btn buy-btn" href="https://www.xbox.com/en-US/games/store/baldurs-gate-3/9ND58LQTG09T" target="_blank">Buy on Xbox Store</a>
+          <button class="btn buy-btn snipcart-add-item"
+                  data-item-id="baldurs-gate-3"
+                  data-item-name="Baldur's Gate 3"
+                  data-item-price="69.99"
+                  data-item-url="/"
+                  data-item-description="A landmark role-playing fantasy epic that offers near-limitless narrative freedom and imaginative scope.">
+            Add to Cart
+          </button>
         </div>
         <!-- Psychonauts 2 -->
         <div class="card">
           <div class="icon"><i class="fas fa-brain"></i></div>
           <h3>Psychonauts 2</h3>
           <p>A creative 3D platformer where psychic acrobat Raz explores minds filled with distinct characters and surprises.</p>
-          <a class="btn buy-btn" href="https://www.xbox.com/en-US/games/store/psychonauts-2/9nbr2vxt87sj" target="_blank">Buy on Xbox Store</a>
+          <button class="btn buy-btn snipcart-add-item"
+                  data-item-id="psychonauts-2"
+                  data-item-name="Psychonauts 2"
+                  data-item-price="59.99"
+                  data-item-url="/"
+                  data-item-description="A creative 3D platformer where psychic acrobat Raz explores minds filled with distinct characters and surprises.">
+            Add to Cart
+          </button>
         </div>
         <!-- Elden Ring -->
         <div class="card">
           <div class="icon"><i class="fas fa-ring"></i></div>
           <h3>Elden Ring</h3>
           <p>An expansive fantasy opera with spectacular landscapes, bizarre characters and challenging bosses in an unrivalled open world.</p>
-          <a class="btn buy-btn" href="https://www.xbox.com/en-US/games/store/elden-ring/9p3j32ctxlrz" target="_blank">Buy on Xbox Store</a>
+          <button class="btn buy-btn snipcart-add-item"
+                  data-item-id="elden-ring"
+                  data-item-name="Elden Ring"
+                  data-item-price="59.99"
+                  data-item-url="/"
+                  data-item-description="An expansive fantasy opera with spectacular landscapes, bizarre characters and challenging bosses in an unrivalled open world.">
+            Add to Cart
+          </button>
         </div>
         <!-- Hades -->
         <div class="card">
           <div class="icon"><i class="fas fa-fire"></i></div>
           <h3>Hades</h3>
           <p>A roguelike action adventure where you battle through the underworld alongside witty gods of Greek mythology.</p>
-          <a class="btn buy-btn" href="https://www.xbox.com/en-US/games/store/hades/9p8dl6w0jbb8" target="_blank">Buy on Xbox Store</a>
+          <button class="btn buy-btn snipcart-add-item"
+                  data-item-id="hades"
+                  data-item-name="Hades"
+                  data-item-price="24.99"
+                  data-item-url="/"
+                  data-item-description="A roguelike action adventure where you battle through the underworld alongside witty gods of Greek mythology.">
+            Add to Cart
+          </button>
         </div>
         <!-- Hi‑Fi Rush -->
         <div class="card">
           <div class="icon"><i class="fas fa-music"></i></div>
           <h3>Hi‑Fi Rush</h3>
           <p>A rhythm‑driven action brawler in which enemies and environments move to the beat, delivering a colourful music‑centred experience.</p>
-          <a class="btn buy-btn" href="https://www.xbox.com/en-US/games/store/hi-fi-rush/9NFTC552K3GJ" target="_blank">Buy on Xbox Store</a>
+          <button class="btn buy-btn snipcart-add-item"
+                  data-item-id="hi-fi-rush"
+                  data-item-name="Hi-Fi Rush"
+                  data-item-price="29.99"
+                  data-item-url="/"
+                  data-item-description="A rhythm-driven action brawler in which enemies and environments move to the beat, delivering a colourful music-centred experience.">
+            Add to Cart
+          </button>
         </div>
         <!-- Indiana Jones and the Great Circle -->
         <div class="card">
           <div class="icon"><i class="fas fa-hat-cowboy"></i></div>
           <h3>Indiana Jones &amp; the Great Circle</h3>
           <p>A cinematic adventure where Indy punches and puzzles his way around the world on the trail of mythological secrets.</p>
-          <a class="btn buy-btn" href="https://www.xbox.com/en-US/games/store/indiana-jones-and-the-great-circle/9N8FQ28Z6QX3/0010" target="_blank">Buy on Xbox Store</a>
+          <button class="btn buy-btn snipcart-add-item"
+                  data-item-id="indiana-jones-great-circle"
+                  data-item-name="Indiana Jones and the Great Circle"
+                  data-item-price="69.99"
+                  data-item-url="/"
+                  data-item-description="A cinematic adventure where Indy punches and puzzles his way around the world on the trail of mythological secrets.">
+            Add to Cart
+          </button>
         </div>
         <!-- Sea of Thieves -->
         <div class="card">
           <div class="icon"><i class="fas fa-ship"></i></div>
           <h3>Sea of Thieves</h3>
           <p>A cooperative pirate adventure delivering memorable co‑op escapades across colourful, cartoon oceans.</p>
-          <a class="btn buy-btn" href="https://www.xbox.com/en-US/games/sea-of-thieves" target="_blank">Buy on Xbox Store</a>
+          <button class="btn buy-btn snipcart-add-item"
+                  data-item-id="sea-of-thieves"
+                  data-item-name="Sea of Thieves"
+                  data-item-price="39.99"
+                  data-item-url="/"
+                  data-item-description="A cooperative pirate adventure delivering memorable co-op escapades across colourful, cartoon oceans.">
+            Add to Cart
+          </button>
         </div>
       </div>
     </section>
@@ -202,5 +264,9 @@
   <footer>
     <p>&copy; 2026 Gaming Hub. All rights reserved.</p>
   </footer>
+  <!-- Snipcart container and script -->
+  <!-- Replace YOUR_PUBLIC_API_KEY with your Snipcart public API key once you create an account -->
+  <div hidden id="snipcart" data-api-key="YOUR_PUBLIC_API_KEY" data-config-modal-style="side"></div>
+  <script async src="https://cdn.snipcart.com/themes/v3.3.5/default/snipcart.js"></script>
 </body>
 </html>

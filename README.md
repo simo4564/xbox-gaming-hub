@@ -1,6 +1,6 @@
 # Gaming Hub: Enhanced Xbox Games &amp; Game Pass Guide
 
-This directory contains an **enhanced** static website that showcases standout Xbox titles, highlights upcoming day‑one Game Pass releases and summarises Microsoft’s current Game Pass tiers as of early 2026. The layout has been reimagined with a modern dark theme, responsive cards and an optional contact form. Each featured game card now includes a **Buy on Xbox Store** link that directs visitors to the official product page for secure digital purchases. A **Join Game Pass** button has also been added below the plans table to help visitors sign up for Microsoft’s subscription service.
+This directory contains an **enhanced** static website that showcases standout Xbox titles, highlights upcoming day‑one Game Pass releases and summarises Microsoft’s current Game Pass tiers as of early 2026. The layout has been reimagined with a modern dark theme, responsive cards and an optional contact form. Each featured game card now includes an **Add to Cart** button powered by **Snipcart**, so visitors can build a shopping cart and check out without leaving your site (once you provide a valid Snipcart API key). A **Join Game Pass** button remains below the plans table for those who want to subscribe directly through Microsoft.
 
 ## Contents
 
@@ -45,6 +45,17 @@ Follow these steps to host the site using **GitHub Pages**, GitHub’s free sta
 ## Customising
 
 Feel free to modify the HTML or CSS to suit your needs. You can expand the games list, add your own upcoming release cards, adjust colours or typography, or even create additional pages. To change the hero background, replace `assets/hero.png` with your own image and update the `background-image` property in `style.css`.
+
+## Integrating Snipcart for E‑Commerce
+
+This site uses [Snipcart](https://snipcart.com/) to enable in‑page purchases and a shopping cart. Snipcart is a plug‑and‑play ecommerce platform that works on static sites. The provided `index.html` already includes Snipcart’s stylesheet and JavaScript, plus a hidden `<div id="snipcart">` placeholder. To make the cart functional:
+
+1. **Create a Snipcart account** at [snipcart.com](https://snipcart.com) and copy your **public API key** from the dashboard.
+2. In `index.html`, locate the line near the bottom that reads `data-api-key="YOUR_PUBLIC_API_KEY"` and replace `YOUR_PUBLIC_API_KEY` with your actual public API key. Do **not** share or commit your secret API key.
+3. Configure payment gateways and shipping settings in the Snipcart dashboard. Snipcart supports Stripe, PayPal and other processors.
+4. Each **Add to Cart** button has `data-item-*` attributes that define the product ID, name, price and description. You can adjust these values or add new products by following the same pattern. See Snipcart’s documentation for additional options, such as specifying item URLs, images or downloadable files.
+
+Until you provide a valid API key and configure a payment gateway, checkout will run in **test mode** and display a demo payment form. Replace the placeholder key and adjust product prices to reflect your own offerings before going live.
 
 ## Disclaimer
 
