@@ -27,6 +27,8 @@
         <li><a href="#contact">Contact</a></li>
         <!-- Snipcart cart link -->
         <li><a href="#" class="snipcart-checkout">Cart (<span class="snipcart-items-count">0</span>)</a></li>
+        <!-- Theme toggle button -->
+        <li><button id="theme-toggle" class="theme-toggle"><i class="fas fa-sun"></i></button></li>
       </ul>
     </nav>
     <div class="hero">
@@ -50,12 +52,19 @@
 
     <section id="games" class="section">
       <h2>Featured Games</h2>
+      <!-- Search bar for game filtering -->
+      <div class="search-container">
+        <input type="text" id="search-input" placeholder="Search games...">
+      </div>
       <div class="card-grid">
         <!-- Alan Wake 2 -->
-        <div class="card">
+        <div class="card fade-in-up">
           <div class="icon"><i class="fas fa-ghost"></i></div>
           <h3>Alan Wake 2</h3>
           <p>A surreal blend of detective procedural and survival horror where author Alan Wake fights to escape an alternate dimension.</p>
+          <div class="rating">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+          </div>
           <button class="btn buy-btn snipcart-add-item"
                   data-item-id="alan-wake-2"
                   data-item-name="Alan Wake 2"
@@ -66,10 +75,13 @@
           </button>
         </div>
         <!-- Baldur's Gate 3 -->
-        <div class="card">
+        <div class="card fade-in-up">
           <div class="icon"><i class="fas fa-dragon"></i></div>
           <h3>Baldur’s Gate 3</h3>
           <p>A landmark role‑playing fantasy epic that offers near‑limitless narrative freedom and imaginative scope.</p>
+          <div class="rating">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
           <button class="btn buy-btn snipcart-add-item"
                   data-item-id="baldurs-gate-3"
                   data-item-name="Baldur's Gate 3"
@@ -80,10 +92,13 @@
           </button>
         </div>
         <!-- Psychonauts 2 -->
-        <div class="card">
+        <div class="card fade-in-up">
           <div class="icon"><i class="fas fa-brain"></i></div>
           <h3>Psychonauts 2</h3>
           <p>A creative 3D platformer where psychic acrobat Raz explores minds filled with distinct characters and surprises.</p>
+          <div class="rating">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+          </div>
           <button class="btn buy-btn snipcart-add-item"
                   data-item-id="psychonauts-2"
                   data-item-name="Psychonauts 2"
@@ -94,10 +109,13 @@
           </button>
         </div>
         <!-- Elden Ring -->
-        <div class="card">
+        <div class="card fade-in-up">
           <div class="icon"><i class="fas fa-ring"></i></div>
           <h3>Elden Ring</h3>
           <p>An expansive fantasy opera with spectacular landscapes, bizarre characters and challenging bosses in an unrivalled open world.</p>
+          <div class="rating">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+          </div>
           <button class="btn buy-btn snipcart-add-item"
                   data-item-id="elden-ring"
                   data-item-name="Elden Ring"
@@ -108,10 +126,13 @@
           </button>
         </div>
         <!-- Hades -->
-        <div class="card">
+        <div class="card fade-in-up">
           <div class="icon"><i class="fas fa-fire"></i></div>
           <h3>Hades</h3>
           <p>A roguelike action adventure where you battle through the underworld alongside witty gods of Greek mythology.</p>
+          <div class="rating">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+          </div>
           <button class="btn buy-btn snipcart-add-item"
                   data-item-id="hades"
                   data-item-name="Hades"
@@ -122,10 +143,13 @@
           </button>
         </div>
         <!-- Hi‑Fi Rush -->
-        <div class="card">
+        <div class="card fade-in-up">
           <div class="icon"><i class="fas fa-music"></i></div>
           <h3>Hi‑Fi Rush</h3>
           <p>A rhythm‑driven action brawler in which enemies and environments move to the beat, delivering a colourful music‑centred experience.</p>
+          <div class="rating">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+          </div>
           <button class="btn buy-btn snipcart-add-item"
                   data-item-id="hi-fi-rush"
                   data-item-name="Hi-Fi Rush"
@@ -136,10 +160,13 @@
           </button>
         </div>
         <!-- Indiana Jones and the Great Circle -->
-        <div class="card">
+        <div class="card fade-in-up">
           <div class="icon"><i class="fas fa-hat-cowboy"></i></div>
           <h3>Indiana Jones &amp; the Great Circle</h3>
           <p>A cinematic adventure where Indy punches and puzzles his way around the world on the trail of mythological secrets.</p>
+          <div class="rating">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+          </div>
           <button class="btn buy-btn snipcart-add-item"
                   data-item-id="indiana-jones-great-circle"
                   data-item-name="Indiana Jones and the Great Circle"
@@ -150,10 +177,13 @@
           </button>
         </div>
         <!-- Sea of Thieves -->
-        <div class="card">
+        <div class="card fade-in-up">
           <div class="icon"><i class="fas fa-ship"></i></div>
           <h3>Sea of Thieves</h3>
           <p>A cooperative pirate adventure delivering memorable co‑op escapades across colourful, cartoon oceans.</p>
+          <div class="rating">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+          </div>
           <button class="btn buy-btn snipcart-add-item"
                   data-item-id="sea-of-thieves"
                   data-item-name="Sea of Thieves"
@@ -164,6 +194,8 @@
           </button>
         </div>
       </div>
+      <!-- Load more button -->
+      <button id="load-more" class="btn load-more">Load More</button>
     </section>
 
     <section id="upcoming" class="section">
@@ -244,6 +276,92 @@
     </div>
     </section>
 
+    <!-- Stats Section -->
+    <section id="stats" class="section">
+      <h2>Our Impact</h2>
+      <div class="stats-grid">
+        <div class="stat fade-in-up">
+          <span class="counter" data-target="5000">0</span>
+          <p>Games Curated</p>
+        </div>
+        <div class="stat fade-in-up">
+          <span class="counter" data-target="1200">0</span>
+          <p>Satisfied Customers</p>
+        </div>
+        <div class="stat fade-in-up">
+          <span class="counter" data-target="4.8">0</span>
+          <p>Average Rating</p>
+        </div>
+        <div class="stat fade-in-up">
+          <span class="counter" data-target="25000">0</span>
+          <p>Hours of Gameplay</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section">
+      <h2>What Our Players Say</h2>
+      <div class="testimonial-grid">
+        <div class="testimonial-card fade-in-up">
+          <p>“Gaming Hub helped me discover amazing indie titles I wouldn’t have played otherwise.”</p>
+          <div class="rating">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+          </div>
+          <span class="testimonial-name">— Samira K.</span>
+        </div>
+        <div class="testimonial-card fade-in-up">
+          <p>“The Game Pass comparison made it easy to pick the right plan for my family.”</p>
+          <div class="rating">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <span class="testimonial-name">— Diego M.</span>
+        </div>
+        <div class="testimonial-card fade-in-up">
+          <p>“Awesome site! Love the curated lists and upcoming release countdown.”</p>
+          <div class="rating">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+          </div>
+          <span class="testimonial-name">— Linh T.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Video Section -->
+    <section id="video" class="section">
+      <h2>Watch Our Trailer</h2>
+      <div class="video-container fade-in-up">
+        <iframe src="https://www.youtube.com/embed/2gmgV9BdxsI" title="Game Trailer" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section id="newsletter" class="section">
+      <h2>Stay in the Loop</h2>
+      <p>Get the latest news on new releases, deals and tips by subscribing to our newsletter.</p>
+      <form id="newsletter-form">
+        <input type="email" placeholder="Enter your email address" required>
+        <button type="submit" class="btn">Subscribe</button>
+      </form>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section">
+      <h2>Frequently Asked Questions</h2>
+      <details class="fade-in-up">
+        <summary>Is Game Pass Ultimate worth the price?</summary>
+        <p>Ultimate offers day‑one releases, EA Play, Ubisoft+ Classics and cloud streaming up to 1440p. If you want access to everything, it’s the best value.</p>
+      </details>
+      <details class="fade-in-up">
+        <summary>How do I redeem digital codes purchased here?</summary>
+        <p>After checkout, you’ll receive codes by email. Redeem them on your Xbox console or at redeem.microsoft.com.</p>
+      </details>
+      <details class="fade-in-up">
+        <summary>Can I upgrade or downgrade my Game Pass plan later?</summary>
+        <p>Yes—Microsoft allows you to change your subscription tier at any time through your account settings.</p>
+      </details>
+    </section>
+
     <section id="contact" class="section">
       <h2>Contact Us</h2>
       <p>
@@ -264,9 +382,20 @@
   <footer>
     <p>&copy; 2026 Gaming Hub. All rights reserved.</p>
   </footer>
+  <!-- Scroll to top button -->
+  <button id="scroll-top" aria-label="Scroll to top"><i class="fas fa-chevron-up"></i></button>
+
+  <!-- Cookie banner -->
+  <div id="cookie-banner">
+    We use cookies to enhance your browsing experience.
+    <button id="accept-cookies">Got it!</button>
+  </div>
+
   <!-- Snipcart container and script -->
   <!-- Replace YOUR_PUBLIC_API_KEY with your Snipcart public API key once you create an account -->
   <div hidden id="snipcart" data-api-key="YOUR_PUBLIC_API_KEY" data-config-modal-style="side"></div>
   <script async src="https://cdn.snipcart.com/themes/v3.3.5/default/snipcart.js"></script>
+  <!-- Site-wide interactivity -->
+  <script src="script.js"></script>
 </body>
 </html>

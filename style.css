@@ -233,6 +233,367 @@ footer {
   font-size: 0.9rem;
 }
 
+/* ------------------------------------------------------------------ */
+/* Enhancements: Theme variables and overrides */
+
+/* Define CSS variables for dark theme */
+:root {
+  --bg-color: #0a0e23;
+  --primary-color: #00aaff;
+  --secondary-color: #031d44;
+  --card-bg: #131f36;
+  --text-color: #e2e8f0;
+  --border-color: #223a6a;
+  --highlight-color: #ffc107;
+}
+
+/* Light theme overrides */
+body.light-theme {
+  --bg-color: #f2f6ff;
+  --primary-color: #0066cc;
+  --secondary-color: #ffffff;
+  --card-bg: #ffffff;
+  --text-color: #0a0e23;
+  --border-color: #c5d7ff;
+  --highlight-color: #ffa500;
+}
+
+/* Override existing colours using variables */
+body {
+  background: var(--bg-color);
+  color: var(--text-color);
+}
+
+.navbar {
+  background: var(--secondary-color);
+  color: var(--text-color);
+}
+
+.nav-links li a {
+  color: var(--text-color);
+}
+
+.nav-links li a:hover {
+  color: var(--primary-color);
+}
+
+.card {
+  background: var(--card-bg);
+}
+
+.card h3 {
+  color: var(--text-color);
+}
+
+.card p {
+  color: var(--text-color);
+}
+
+.card .icon {
+  color: var(--primary-color);
+}
+
+footer {
+  background: var(--secondary-color);
+  color: var(--text-color);
+}
+
+table th {
+  background: var(--secondary-color);
+  color: var(--text-color);
+}
+
+table td,
+table th {
+  border-color: var(--border-color);
+}
+
+.contact-form input,
+.contact-form textarea {
+  background: var(--card-bg);
+  border-color: var(--border-color);
+  color: var(--text-color);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--primary-color);
+}
+
+/* Buttons override using variables */
+.btn {
+  background: var(--primary-color);
+  color: #ffffff;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+  background: #0088cc;
+  transform: translateY(-2px);
+}
+
+/* Theme toggle styling */
+.theme-toggle {
+  background: transparent;
+  border: none;
+  color: var(--primary-color);
+  cursor: pointer;
+  font-size: 1.3rem;
+  transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.2);
+}
+
+/* Search bar */
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.search-container input {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background: var(--card-bg);
+  color: var(--text-color);
+  font-size: 1rem;
+}
+
+.search-container input::placeholder {
+  color: #7a8bae;
+}
+
+.search-container input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+/* Rating stars */
+.rating {
+  display: flex;
+  gap: 0.15rem;
+  margin: 0.5rem 0;
+}
+
+.rating i {
+  color: var(--highlight-color);
+}
+
+/* Load more button */
+.load-more {
+  margin: 1rem auto 0;
+  display: none;
+}
+
+/* Testimonials */
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.testimonial-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.testimonial-card p {
+  font-size: 0.9rem;
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+}
+
+.testimonial-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--primary-color);
+}
+
+/* Stats */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 2rem;
+  text-align: center;
+}
+
+.stat .counter {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.stat p {
+  margin: 0.5rem 0 0;
+  color: var(--text-color);
+}
+
+/* Video section */
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Newsletter */
+#newsletter {
+  text-align: center;
+}
+
+#newsletter-form {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+#newsletter-form input[type="email"] {
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background: var(--card-bg);
+  color: var(--text-color);
+  font-size: 1rem;
+}
+
+#newsletter-form input[type="email"]::placeholder {
+  color: #7a8bae;
+}
+
+#newsletter-form input[type="email"]:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+#newsletter-form button {
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#newsletter-form button:hover {
+  background: #0088cc;
+}
+
+/* FAQ */
+#faq details {
+  background: var(--card-bg);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+#faq summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--primary-color);
+  outline: none;
+}
+
+#faq summary::-webkit-details-marker {
+  display: none;
+}
+
+#faq details[open] summary {
+  margin-bottom: 0.5rem;
+}
+
+#faq p {
+  margin: 0;
+  color: var(--text-color);
+}
+
+/* Scroll to top button */
+#scroll-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: var(--primary-color);
+  color: #ffffff;
+  padding: 0.6rem 0.8rem;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  font-size: 1.3rem;
+  display: none;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  z-index: 1000;
+}
+
+#scroll-top:hover {
+  background: #0088cc;
+}
+
+/* Cookie banner */
+#cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: var(--card-bg);
+  color: var(--text-color);
+  padding: 1rem;
+  text-align: center;
+  display: none;
+  box-shadow: 0 -2px 6px rgba(0,0,0,0.3);
+  z-index: 1000;
+}
+
+#cookie-banner button {
+  margin-left: 1rem;
+  padding: 0.4rem 0.8rem;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#cookie-banner button:hover {
+  background: #0088cc;
+}
+
+/* Fade-in-up animation */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 @media (max-width: 600px) {
   .hero-overlay h1 {
     font-size: 2.2rem;
