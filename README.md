@@ -1,6 +1,6 @@
 # Gaming Hub: Enhanced Xbox Games &amp; Game Pass Guide
 
-This directory contains an **enhanced** static website that showcases standout Xbox titles, highlights upcoming day‑one Game Pass releases and summarises Microsoft’s current Game Pass tiers as of early 2026. The layout has been reimagined with a modern dark theme, responsive cards and an optional contact form.
+This directory contains an **enhanced** static website that showcases standout Xbox titles, highlights upcoming day‑one Game Pass releases and summarises Microsoft’s current Game Pass tiers as of early 2026. The layout has been reimagined with a modern dark theme, responsive cards and an optional contact form. Each featured game card now includes a **Buy on Xbox Store** link that directs visitors to the official product page for secure digital purchases. A **Join Game Pass** button has also been added below the plans table to help visitors sign up for Microsoft’s subscription service.
 
 ## Contents
 
@@ -48,4 +48,4 @@ Feel free to modify the HTML or CSS to suit your needs. You can expand the games
 
 ## Disclaimer
 
-This site is a demonstration and does not process payments. For commercial use, you would need to integrate secure payment processing, user authentication and ensure compliance with relevant policies.
+The included purchase buttons simply link to Microsoft’s official store pages for each game and a general sign‑up page for Game Pass. No payment information is collected or processed by this site. For fully integrated ecommerce (e.g., selling your own digital keys directly), you would need to set up secure payment processing and user authentication separately and ensure compliance with relevant policies.

@@ -11,7 +11,7 @@ body {
 .btn {
   background: #00aaff;
   color: #ffffff;
- padding: 0.8rem 1.6rem;
+  padding: 0.8rem 1.6rem;
   border-radius: 6px;
   text-decoration: none;
   font-weight: 600;
@@ -21,6 +21,18 @@ body {
 
 .btn:hover {
   background: #0088cc;
+}
+
+/* Buy button inside cards */
+.buy-btn {
+  margin-top: 1rem;
+  align-self: flex-start;
+}
+
+/* Join Game Pass container */
+.join-container {
+  margin-top: 1.5rem;
+  text-align: center;
 }
 
 /* Navigation bar */
@@ -62,7 +74,7 @@ body {
 .hero {
   position: relative;
   height: 70vh;
- background-image: url('hero.png');
+  background-image: url('assets/hero.png');
   background-size: cover;
   background-position: center;
 }
