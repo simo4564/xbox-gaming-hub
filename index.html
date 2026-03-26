@@ -6,111 +6,138 @@
   <title>Gaming Hub – Xbox Games & Subscriptions</title>
   <!-- Font Awesome for icons -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <!-- Google Fonts for modern typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <nav>
-      <h1>Gaming Hub</h1>
-      <ul>
-        <li><a href="#games">Games</a></li>
-        <li><a href="#subscriptions">Subscriptions</a></li>
+    <nav class="navbar">
+      <div class="logo">Gaming Hub</div>
+      <ul class="nav-links">
+        <li><a href="#games">Featured Games</a></li>
+        <li><a href="#upcoming">Upcoming</a></li>
+        <li><a href="#subscriptions">Plans</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
     <div class="hero">
       <div class="hero-overlay">
-        <h2>Discover the Best Xbox Games &amp; Subscriptions</h2>
-        <p>Your one‑stop shop for top titles and membership plans.</p>
-        <a href="#subscriptions" class="btn">View Subscriptions</a>
+        <h1>Discover Amazing Xbox Games</h1>
+        <p>Explore top titles, upcoming releases and the right Game Pass plan for you.</p>
+        <a href="#subscriptions" class="btn">Compare Plans</a>
       </div>
     </div>
   </header>
 
   <main>
     <section id="about" class="section">
-      <h2>About Us</h2>
+      <h2>About Gaming Hub</h2>
       <p>
-        Gaming Hub is run by passionate gamers who curate the most exciting Xbox titles and subscription packages.
-        Whether you’re looking for the latest blockbusters or hidden indie gems, our store has you covered. We share
-        up‑to‑date information on Microsoft’s Game Pass tiers and highlight games worth adding to your collection.
+        Gaming Hub is run by passionate gamers who curate the most exciting Xbox titles and subscription packages.
+        Whether you’re chasing the latest blockbusters or exploring hidden indie gems, we keep you informed about what
+        to play and how to get the best value from Microsoft’s Game Pass tiers.
       </p>
     </section>
 
     <section id="games" class="section">
-      <h2>Featured Games</h2>
-      <div class="game-grid">
+      <h2>Featured Games</h2>
+      <div class="card-grid">
         <!-- Alan Wake 2 -->
-        <div class="game-card">
+        <div class="card">
           <div class="icon"><i class="fas fa-ghost"></i></div>
-          <h3>Alan Wake 2</h3>
-          <p>A surreal blend of detective procedural and survival horror in which author Alan Wake must escape an
-            alternate dimension.</p>
+          <h3>Alan Wake 2</h3>
+          <p>A surreal blend of detective procedural and survival horror where author Alan Wake fights to escape an alternate dimension.</p>
         </div>
         <!-- Baldur's Gate 3 -->
-        <div class="game-card">
+        <div class="card">
           <div class="icon"><i class="fas fa-dragon"></i></div>
-          <h3>Baldur’s Gate 3</h3>
-          <p>A landmark role‑playing fantasy epic that offers near‑limitless narrative freedom and imaginative scope.
-          </p>
+          <h3>Baldur’s Gate 3</h3>
+          <p>A landmark role‑playing fantasy epic that offers near‑limitless narrative freedom and imaginative scope.</p>
         </div>
         <!-- Psychonauts 2 -->
-        <div class="game-card">
+        <div class="card">
           <div class="icon"><i class="fas fa-brain"></i></div>
           <h3>Psychonauts 2</h3>
-          <p>A colourful 3D platformer following psychic acrobat Raz as he embarks on a mission full of distinct
-            characters and surprises.</p>
+          <p>A creative 3D platformer where psychic acrobat Raz explores minds filled with distinct characters and surprises.</p>
         </div>
         <!-- Elden Ring -->
-        <div class="game-card">
+        <div class="card">
           <div class="icon"><i class="fas fa-ring"></i></div>
           <h3>Elden Ring</h3>
-          <p>An expansive fantasy opera filled with spectacular landscapes, bizarre characters and challenging bosses in
-            an unrivalled open world.</p>
+          <p>An expansive fantasy opera with spectacular landscapes, bizarre characters and challenging bosses in an unrivalled open world.</p>
         </div>
         <!-- Hades -->
-        <div class="game-card">
+        <div class="card">
           <div class="icon"><i class="fas fa-fire"></i></div>
           <h3>Hades</h3>
-          <p>A rogue‑like action adventure where you battle through the underworld alongside witty gods of Greek
-            mythology.</p>
+          <p>A roguelike action adventure where you battle through the underworld alongside witty gods of Greek mythology.</p>
         </div>
         <!-- Hi‑Fi Rush -->
-        <div class="game-card">
+        <div class="card">
           <div class="icon"><i class="fas fa-music"></i></div>
           <h3>Hi‑Fi Rush</h3>
-          <p>A rhythm‑driven action brawler in which enemies and environments move to the beat, delivering a colourful
-            music‑centred experience.</p>
+          <p>A rhythm‑driven action brawler in which enemies and environments move to the beat, delivering a colourful music‑centred experience.</p>
         </div>
         <!-- Indiana Jones and the Great Circle -->
-        <div class="game-card">
+        <div class="card">
           <div class="icon"><i class="fas fa-hat-cowboy"></i></div>
-          <h3>Indiana Jones &amp; the Great Circle</h3>
-          <p>A cinematic adventure where Indy punches and puzzles his way around the world on the trail of mythological
-            secrets.</p>
+          <h3>Indiana Jones &amp; the Great Circle</h3>
+          <p>A cinematic adventure where Indy punches and puzzles his way around the world on the trail of mythological secrets.</p>
         </div>
-        <!-- Minecraft -->
-        <div class="game-card">
-          <div class="icon"><i class="fas fa-cube"></i></div>
-          <h3>Minecraft</h3>
-          <p>The ultimate crafting adventure, letting you build castles, fight zombies and explore endless worlds made
-            of blocks.</p>
+        <!-- Sea of Thieves -->
+        <div class="card">
+          <div class="icon"><i class="fas fa-ship"></i></div>
+          <h3>Sea of Thieves</h3>
+          <p>A cooperative pirate adventure delivering memorable co‑op escapades across colourful, cartoon oceans.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="upcoming" class="section">
+      <h2>Upcoming Releases</h2>
+      <p>These highly anticipated titles are confirmed for Game Pass Ultimate and PC on day one.</p>
+      <div class="card-grid">
+        <!-- Forza Horizon 6 -->
+        <div class="card">
+          <h3>Forza Horizon 6</h3>
+          <p>Race across breathtaking Japanese landscapes in more than 550 cars in the biggest Forza open world yet. Available May 19, 2026.</p>
+        </div>
+        <!-- Fable -->
+        <div class="card">
+          <h3>Fable</h3>
+          <p>Become the hero you want to be in an immersive open‑world action RPG where each choice shapes your journey and fairytale endings aren’t guaranteed. Launches in 2026.</p>
+        </div>
+        <!-- Halo: Campaign Evolved -->
+        <div class="card">
+          <h3>Halo: Campaign Evolved</h3>
+          <p>A faithful yet modernized remake of <em>Halo: Combat Evolved</em>, rebuilt with HD visuals, refined controls and new missions. Coming in 2026.</p>
+        </div>
+        <!-- Beast of Reincarnation -->
+        <div class="card">
+          <h3>Beast of Reincarnation</h3>
+          <p>In post‑apocalyptic Japan, humanity’s last hope may rest with Emma and her loyal dog Koo; explore what it means to be human in a one‑person, one‑dog action RPG built around demanding combat.</p>
+        </div>
+        <!-- Kiln -->
+        <div class="card">
+          <h3>Kiln</h3>
+          <p>A wild online pottery party from Double Fine Productions where you sculpt ceramic armour on a pottery wheel and battle your friends.</p>
         </div>
       </div>
     </section>
 
     <section id="subscriptions" class="section">
-      <h2>Game Pass &amp; Subscription Plans</h2>
+      <h2>Game Pass Plans</h2>
       <p>
-        Microsoft restructured Xbox Game Pass in October 2025, creating four tiers and increasing prices—Ultimate now
-        costs $29.99 per month. The plans below summarise the current offerings; pick the
-        tier that best suits your gaming habits.
+        Microsoft introduced new tiers in October 2025, upgrading Core subscribers to Essential and Standard subscribers to Premium. Ultimate now costs $29.99/month while Premium remains $14.99 and Essential $9.99.
       </p>
       <table>
         <thead>
           <tr>
             <th>Plan</th>
-            <th>Price (monthly)</th>
+            <th>Monthly Price</th>
             <th>Key Features</th>
           </tr>
         </thead>
@@ -118,38 +145,41 @@
           <tr>
             <td>Essential</td>
             <td>$9.99</td>
-            <td>50+ curated games; online multiplayer; basic cloud gaming access.</td>
+            <td>A curated library of around 50 games, online console multiplayer and basic cloud gaming.</td>
           </tr>
           <tr>
             <td>Premium</td>
             <td>$14.99</td>
-            <td>200+ games across console and PC; first‑party titles arrive approximately 12 months later; Call of Duty excluded.</td>
+            <td>Hundreds of console and PC games; first‑party titles arrive about a year after launch; Call of Duty excluded.</td>
           </tr>
           <tr>
             <td>PC Game Pass</td>
             <td>$16.49</td>
-            <td>PC‑only; includes day‑one releases (including Call of Duty); EA Play and Ubisoft+ Classics; no cloud
-              gaming on mobile or TV.</td>
+            <td>PC‑only library with day‑one releases (including Call of Duty), EA Play and Ubisoft+ Classics; no mobile/TV cloud gaming.</td>
           </tr>
           <tr>
             <td>Ultimate</td>
             <td>$29.99</td>
-            <td>Bundles EA Play, Ubisoft+ Classics and Fortnite Crew; day‑one releases; cloud streaming up to 1440p; 75+
-              new titles per year.</td>
+            <td>Everything in Premium plus day‑one releases; includes EA Play, Ubisoft+ Classics and Fortnite Crew; enhanced cloud streaming up to 1440p and over 75 new titles annually.</td>
           </tr>
         </tbody>
       </table>
-      <p>
-        Only the Ultimate and PC Game Pass tiers include day‑one first‑party releases such as <em>Call of Duty</em>.
+      <p class="note">
+        Day‑one games are only included with Game Pass Ultimate and PC Game Pass. Premium subscribers play first‑party games around a year after launch.
       </p>
     </section>
 
     <section id="contact" class="section">
-      <h2>Get in Touch</h2>
+      <h2>Contact Us</h2>
       <p>
-        Ready to upgrade your gaming experience? Reach out to us to purchase digital codes for your favourite games or
-        to subscribe to Game Pass. Our team is here to answer your questions and help you pick the right plan.
+        Have questions or ready to purchase digital codes? Reach out and our team will help you pick the right games or subscription plan.
       </p>
+      <form class="contact-form" onsubmit="return false;">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea placeholder="Your Message" rows="4" required></textarea>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
       <p>Email:
         <a href="mailto:info@gaminghub.com">info@gaminghub.com</a>
       </p>
