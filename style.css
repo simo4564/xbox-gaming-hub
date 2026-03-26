@@ -11,7 +11,7 @@ body {
 .btn {
   background: #00aaff;
   color: #ffffff;
-  padding: 0.8rem 1.6rem;
+ padding: 0.8rem 1.6rem;
   border-radius: 6px;
   text-decoration: none;
   font-weight: 600;
@@ -62,7 +62,7 @@ body {
 .hero {
   position: relative;
   height: 70vh;
-  background-image: url('assets/hero.png');
+ background-image: url('hero.png');
   background-size: cover;
   background-position: center;
 }
