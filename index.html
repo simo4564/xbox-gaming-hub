@@ -227,6 +227,45 @@
         </div>
     </section>
 
+    <!-- Shop by Goal Section -->
+    <section id="shop-by-goal" class="py-16 bg-dark-card/30 border-b border-dark-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10 reveal">
+                <div>
+                    <p class="text-brand text-sm font-semibold uppercase tracking-[0.2em] mb-2">Start smarter</p>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-3">Shop by Goal</h2>
+                    <p class="text-gray-400 max-w-3xl">Instead of browsing every product, jump into the path that fits what you actually want to buy today. Each path applies a focused store preset so the catalog feels easier to use.</p>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+                <button type="button" data-store-preset="new-player" class="group text-left glass-card rounded-3xl p-6 hover-lift reveal">
+                    <div class="w-12 h-12 rounded-2xl bg-brand/20 text-brand flex items-center justify-center mb-4"><i class="ph ph-rocket-launch text-2xl"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-2">I’m new to Xbox</h3>
+                    <p class="text-sm text-gray-400 mb-4">Start with Game Pass and the easiest essentials for a fresh setup.</p>
+                    <span class="inline-flex items-center gap-2 text-brand font-semibold">Open starter picks <i class="ph ph-arrow-right"></i></span>
+                </button>
+                <button type="button" data-store-preset="budget" class="group text-left glass-card rounded-3xl p-6 hover-lift reveal" style="transition-delay:80ms;">
+                    <div class="w-12 h-12 rounded-2xl bg-brand/20 text-brand flex items-center justify-center mb-4"><i class="ph ph-wallet text-2xl"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-2">I want budget deals</h3>
+                    <p class="text-sm text-gray-400 mb-4">See cheaper titles and wallet-friendly products first.</p>
+                    <span class="inline-flex items-center gap-2 text-brand font-semibold">Show value picks <i class="ph ph-arrow-right"></i></span>
+                </button>
+                <button type="button" data-store-preset="multiplayer" class="group text-left glass-card rounded-3xl p-6 hover-lift reveal" style="transition-delay:160ms;">
+                    <div class="w-12 h-12 rounded-2xl bg-brand/20 text-brand flex items-center justify-center mb-4"><i class="ph ph-users-three text-2xl"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-2">I want multiplayer access</h3>
+                    <p class="text-sm text-gray-400 mb-4">Jump straight to subscriptions built for online play and stacked value.</p>
+                    <span class="inline-flex items-center gap-2 text-brand font-semibold">View multiplayer plans <i class="ph ph-arrow-right"></i></span>
+                </button>
+                <button type="button" data-store-preset="big-games" class="group text-left glass-card rounded-3xl p-6 hover-lift reveal" style="transition-delay:240ms;">
+                    <div class="w-12 h-12 rounded-2xl bg-brand/20 text-brand flex items-center justify-center mb-4"><i class="ph ph-game-controller text-2xl"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-2">I want the big titles</h3>
+                    <p class="text-sm text-gray-400 mb-4">Focus on the most recognizable games and flagship offers.</p>
+                    <span class="inline-flex items-center gap-2 text-brand font-semibold">Explore top games <i class="ph ph-arrow-right"></i></span>
+                </button>
+            </div>
+        </div>
+    </section>
+
     <!-- Featured Deals Section -->
     <section id="featured-deals" class="py-16 bg-dark-bg border-b border-dark-border">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -351,6 +390,57 @@
                 </div>
             </div>
             <div id="recently-viewed-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+        </div>
+    </section>
+
+    <!-- Bundle Builder Section -->
+    <section id="bundle-builder" class="py-20 bg-dark-bg border-y border-dark-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10 reveal">
+                <div>
+                    <p class="text-brand text-sm font-semibold uppercase tracking-[0.2em] mb-2">Ready-made buying flow</p>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-3">Build Your Perfect Pack</h2>
+                    <p class="text-gray-400 max-w-3xl">Pick a subscription, a game, and an optional gift card in one place. The builder creates a cleaner buying path and a ready-to-send WhatsApp request without you having to add each item manually.</p>
+                </div>
+                <div class="text-sm text-gray-500 max-w-md">Useful for first-time buyers, gift purchases, and customers who want one combined order instead of browsing section by section.</div>
+            </div>
+            <div class="grid grid-cols-1 xl:grid-cols-[1.2fr,0.8fr] gap-6">
+                <div class="glass-card rounded-3xl p-6 md:p-8 reveal">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                        <div>
+                            <label for="bundle-subscription" class="block text-sm font-semibold text-white mb-2">Subscription</label>
+                            <select id="bundle-subscription" class="w-full bg-dark-bg border border-dark-border rounded-2xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand"></select>
+                        </div>
+                        <div>
+                            <label for="bundle-game" class="block text-sm font-semibold text-white mb-2">Game</label>
+                            <select id="bundle-game" class="w-full bg-dark-bg border border-dark-border rounded-2xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand"></select>
+                        </div>
+                        <div>
+                            <label for="bundle-giftcard" class="block text-sm font-semibold text-white mb-2">Gift card</label>
+                            <select id="bundle-giftcard" class="w-full bg-dark-bg border border-dark-border rounded-2xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand"></select>
+                        </div>
+                    </div>
+                    <div id="bundle-summary-grid" class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6"></div>
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <button id="bundle-add-cart-btn" class="flex-1 bg-dark-bg hover:bg-white/10 border border-dark-border hover:border-brand text-white font-semibold py-3 rounded-2xl transition-colors flex items-center justify-center gap-2"><i class="ph ph-shopping-cart-simple"></i> Add pack to cart</button>
+                        <button id="bundle-whatsapp-btn" class="flex-1 bg-brand hover:bg-brand-light text-white font-semibold py-3 rounded-2xl transition-colors flex items-center justify-center gap-2"><i class="ph-fill ph-whatsapp-logo"></i> Order this pack</button>
+                    </div>
+                </div>
+                <div class="glass-card rounded-3xl p-6 md:p-8 reveal" style="transition-delay:120ms;">
+                    <p class="text-brand text-sm font-semibold uppercase tracking-[0.2em] mb-2">Pack preview</p>
+                    <h3 class="text-2xl font-bold text-white mb-4">Bundle summary</h3>
+                    <div class="space-y-4 mb-6" id="bundle-breakdown"></div>
+                    <div class="bg-dark-bg border border-dark-border rounded-2xl p-5 mb-6">
+                        <div class="flex justify-between items-center text-sm text-gray-400 mb-2"><span>Items selected</span><span id="bundle-item-count">0</span></div>
+                        <div class="flex justify-between items-center text-lg font-bold text-white"><span>Bundle total</span><span id="bundle-total">€0.00</span></div>
+                    </div>
+                    <div class="space-y-3 text-sm text-gray-400">
+                        <div class="flex items-start gap-3"><i class="ph ph-check-circle text-brand text-lg mt-0.5"></i><p>One structured WhatsApp request instead of multiple back-and-forth messages.</p></div>
+                        <div class="flex items-start gap-3"><i class="ph ph-check-circle text-brand text-lg mt-0.5"></i><p>Helps buyers send region, email, and bundle intent in one clean message.</p></div>
+                        <div class="flex items-start gap-3"><i class="ph ph-check-circle text-brand text-lg mt-0.5"></i><p>Perfect for starter packs, gifts, and seasonal bundles.</p></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -593,10 +683,17 @@
                 <h2 class="text-3xl font-bold text-white mb-4">Frequently Asked Questions</h2>
                 <p class="text-gray-400">Everything you need to know about our digital store.</p>
             </div>
+            <div class="max-w-xl mx-auto mb-8 reveal">
+                <div class="relative group">
+                    <i class="ph ph-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"></i>
+                    <input type="text" id="faq-search-input" placeholder="Search questions like region, delivery, refund..." class="w-full bg-dark-card border border-dark-border rounded-2xl pl-12 pr-4 py-3 text-sm text-white focus:outline-none focus:border-brand placeholder-gray-600">
+                </div>
+                <p id="faq-search-status" class="text-sm text-gray-500 mt-3 text-center">Type to filter the FAQ instantly.</p>
+            </div>
             
-            <div class="space-y-4 reveal">
+            <div class="space-y-4 reveal" id="faq-list">
                 <!-- FAQ Item 1 -->
-                <div class="bg-dark-card border border-dark-border rounded-xl overflow-hidden">
+                <div class="faq-item bg-dark-card border border-dark-border rounded-xl overflow-hidden">
                     <button class="faq-btn w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none">
                         <span class="font-semibold text-white">How do I receive my order?</span>
                         <i class="ph ph-caret-down text-gray-400 transition-transform duration-300"></i>
@@ -606,7 +703,7 @@
                     </div>
                 </div>
                 <!-- FAQ Item 2 -->
-                <div class="bg-dark-card border border-dark-border rounded-xl overflow-hidden">
+                <div class="faq-item bg-dark-card border border-dark-border rounded-xl overflow-hidden">
                     <button class="faq-btn w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none">
                         <span class="font-semibold text-white">Are the prices updated automatically?</span>
                         <i class="ph ph-caret-down text-gray-400 transition-transform duration-300"></i>
@@ -616,7 +713,7 @@
                     </div>
                 </div>
                 <!-- FAQ Item 3 -->
-                <div class="bg-dark-card border border-dark-border rounded-xl overflow-hidden">
+                <div class="faq-item bg-dark-card border border-dark-border rounded-xl overflow-hidden">
                     <button class="faq-btn w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none">
                         <span class="font-semibold text-white">Which regions are supported?</span>
                         <i class="ph ph-caret-down text-gray-400 transition-transform duration-300"></i>
@@ -626,7 +723,7 @@
                     </div>
                 </div>
                  <!-- FAQ Item 4 -->
-                 <div class="bg-dark-card border border-dark-border rounded-xl overflow-hidden">
+                 <div class="faq-item bg-dark-card border border-dark-border rounded-xl overflow-hidden">
                     <button class="faq-btn w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none">
                         <span class="font-semibold text-white">How do subscriptions work?</span>
                         <i class="ph ph-caret-down text-gray-400 transition-transform duration-300"></i>
@@ -969,6 +1066,15 @@
         const compareModal = document.getElementById('compare-modal');
         const compareModalContent = document.getElementById('compare-modal-content');
         const compareModalBody = document.getElementById('compare-modal-body');
+        const bundleSubscriptionSelect = document.getElementById('bundle-subscription');
+        const bundleGameSelect = document.getElementById('bundle-game');
+        const bundleGiftcardSelect = document.getElementById('bundle-giftcard');
+        const bundleSummaryGrid = document.getElementById('bundle-summary-grid');
+        const bundleBreakdown = document.getElementById('bundle-breakdown');
+        const bundleTotal = document.getElementById('bundle-total');
+        const bundleItemCount = document.getElementById('bundle-item-count');
+        const faqSearchInput = document.getElementById('faq-search-input');
+        const faqSearchStatus = document.getElementById('faq-search-status');
 
         // Initialization
         async function init() {
@@ -981,9 +1087,12 @@
             renderLiveDeals();
             renderProducts();
             renderRecentlyViewed();
+            populateBundleBuilder();
+            updateBundlePreview();
             updateCartUI();
             updateFavoritesUI();
             renderCompareTray();
+            initFaqSearch();
             initScrollAnimations();
             setLastUpdated();
             startCountdown();
@@ -1113,6 +1222,16 @@
                 });
             });
 
+            document.querySelectorAll('[data-store-preset]').forEach((button) => {
+                button.addEventListener('click', () => applyStorePreset(button.dataset.storePreset));
+            });
+
+            [bundleSubscriptionSelect, bundleGameSelect, bundleGiftcardSelect].forEach((select) => {
+                select?.addEventListener('change', updateBundlePreview);
+            });
+            document.getElementById('bundle-add-cart-btn')?.addEventListener('click', addBundleToCart);
+            document.getElementById('bundle-whatsapp-btn')?.addEventListener('click', sendBundleToWhatsApp);
+
             // Filters & Sort
             document.querySelectorAll('.cat-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
@@ -1195,6 +1314,177 @@
                     closeProductModal();
                     closeCompareModal();
                 }
+            });
+        }
+
+        function getProductsByCategory(category) {
+            return products.filter((product) => product.category === category);
+        }
+
+        function optionMarkup(items, placeholder) {
+            return [`<option value="">${placeholder}</option>`]
+                .concat(items.map((item) => `<option value="${item.id}">${item.name} — ${STORE_CONFIG.currency}${item.price.toFixed(2)}</option>`))
+                .join('');
+        }
+
+        function populateBundleBuilder() {
+            if (!bundleSubscriptionSelect || !bundleGameSelect || !bundleGiftcardSelect) return;
+            const subscriptions = getProductsByCategory('subscriptions');
+            const games = getProductsByCategory('games');
+            const giftcards = getProductsByCategory('giftcards');
+            bundleSubscriptionSelect.innerHTML = optionMarkup(subscriptions, 'No subscription');
+            bundleGameSelect.innerHTML = optionMarkup(games, 'No game');
+            bundleGiftcardSelect.innerHTML = optionMarkup(giftcards, 'No gift card');
+            if (subscriptions[0]) bundleSubscriptionSelect.value = subscriptions[0].id;
+            if (games[0]) bundleGameSelect.value = games[0].id;
+        }
+
+        function selectedBundleProducts() {
+            return [bundleSubscriptionSelect?.value, bundleGameSelect?.value, bundleGiftcardSelect?.value]
+                .filter(Boolean)
+                .map((id) => products.find((product) => product.id === id))
+                .filter(Boolean);
+        }
+
+        async function updateBundlePreview() {
+            if (!bundleBreakdown || !bundleTotal || !bundleItemCount || !bundleSummaryGrid) return;
+            const selected = selectedBundleProducts();
+            bundleItemCount.textContent = selected.length;
+            if (!selected.length) {
+                bundleSummaryGrid.innerHTML = '';
+                bundleBreakdown.innerHTML = '<div class="rounded-2xl border border-dark-border bg-dark-bg p-4 text-sm text-gray-400">Choose at least one item to build a pack.</div>';
+                bundleTotal.textContent = `${STORE_CONFIG.currency}0.00`;
+                return;
+            }
+
+            const total = selected.reduce((sum, item) => sum + Number(item.price || 0), 0);
+            bundleSummaryGrid.innerHTML = selected.map((item) => `
+                <div class="bg-dark-bg border border-dark-border rounded-2xl p-4 flex items-center gap-3">
+                    <img src="${getProductImage(item)}" alt="${item.name}" class="w-14 h-14 rounded-xl object-contain bg-black/20 p-1" onerror="this.onerror=null;this.src='assets/gift-card-10-eur.png?v=3';">
+                    <div>
+                        <p class="text-xs uppercase tracking-[0.16em] text-brand font-semibold mb-1">${item.category}</p>
+                        <p class="text-white text-sm font-semibold leading-snug">${item.name}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            try {
+                const res = await fetch('/api/bundle-preview', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ items: selected })
+                });
+                if (res.ok) {
+                    const preview = await res.json();
+                    bundleBreakdown.innerHTML = selected.map((item) => `
+                        <div class="flex items-center justify-between gap-4 rounded-2xl border border-dark-border bg-dark-bg p-4">
+                            <div>
+                                <p class="text-white font-semibold">${item.name}</p>
+                                <p class="text-xs text-gray-500 uppercase tracking-[0.16em] mt-1">${item.category}</p>
+                            </div>
+                            <span class="text-brand font-bold">${STORE_CONFIG.currency}${Number(item.price).toFixed(2)}</span>
+                        </div>
+                    `).join('') + `<div class="rounded-2xl border border-brand/30 bg-brand/10 p-4 text-sm text-gray-300"><span class="text-white font-semibold">Pack note:</span> ${preview.note || 'Combined order request generated successfully.'}</div>`;
+                    bundleTotal.textContent = `${STORE_CONFIG.currency}${Number(preview.total || total).toFixed(2)}`;
+                    return;
+                }
+            } catch (err) {}
+
+            bundleBreakdown.innerHTML = selected.map((item) => `
+                <div class="flex items-center justify-between gap-4 rounded-2xl border border-dark-border bg-dark-bg p-4">
+                    <div>
+                        <p class="text-white font-semibold">${item.name}</p>
+                        <p class="text-xs text-gray-500 uppercase tracking-[0.16em] mt-1">${item.category}</p>
+                    </div>
+                    <span class="text-brand font-bold">${STORE_CONFIG.currency}${Number(item.price).toFixed(2)}</span>
+                </div>
+            `).join('') + '<div class="rounded-2xl border border-dark-border bg-dark-bg p-4 text-sm text-gray-400">Bundle preview is running in local mode. The total still updates correctly.</div>';
+            bundleTotal.textContent = `${STORE_CONFIG.currency}${Number(total).toFixed(2)}`;
+        }
+
+        function addBundleToCart() {
+            const selected = selectedBundleProducts();
+            if (!selected.length) {
+                showToast('Bundle builder', 'Select at least one item first.');
+                return;
+            }
+            selected.forEach((item) => {
+                const existing = cart.find((cartItem) => cartItem.id === item.id);
+                if (existing) existing.qty += 1;
+                else cart.push({ ...item, qty: 1 });
+            });
+            saveCart();
+            updateCartUI();
+            showToast('Bundle pack', 'Selected items were added to your cart.');
+            openCart();
+        }
+
+        function sendBundleToWhatsApp() {
+            const selected = selectedBundleProducts();
+            if (!selected.length) {
+                showToast('Bundle builder', 'Select at least one item first.');
+                return;
+            }
+            const total = selected.reduce((sum, item) => sum + Number(item.price || 0), 0);
+            let msg = `*New bundle request from ${STORE_CONFIG.siteName}*
+
+`;
+            msg += `*Bundle items:*
+`;
+            selected.forEach((item) => {
+                msg += `• ${item.name} — ${STORE_CONFIG.currency}${Number(item.price).toFixed(2)}
+`;
+            });
+            msg += `
+*Bundle total:* ${STORE_CONFIG.currency}${total.toFixed(2)}
+`;
+            msg += `*Next step:* Please confirm availability, region fit, and payment details for this pack.
+`;
+            msg += `*Source:* ${STORE_CONFIG.siteUrl}`;
+            window.open(`https://wa.me/${STORE_CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        function applyStorePreset(preset) {
+            const searchInput = document.getElementById('search-input');
+            const clearSearchBtn = document.getElementById('clear-search-btn');
+            const presetMap = {
+                'new-player': { category: 'subscriptions', search: 'game pass', sort: 'popular' },
+                'budget': { category: 'games', search: '', sort: 'price-low' },
+                'multiplayer': { category: 'subscriptions', search: '', sort: 'price-high' },
+                'big-games': { category: 'games', search: '', sort: 'popular' }
+            };
+            const selectedPreset = presetMap[preset];
+            if (!selectedPreset) return;
+            currentFilter = selectedPreset.category;
+            currentSort = selectedPreset.sort;
+            searchQuery = selectedPreset.search;
+            if (searchInput) searchInput.value = selectedPreset.search;
+            if (clearSearchBtn) {
+                if (selectedPreset.search) clearSearchBtn.classList.remove('hidden');
+                else clearSearchBtn.classList.add('hidden');
+            }
+            const sortSelect = document.getElementById('sort-select');
+            if (sortSelect) sortSelect.value = currentSort;
+            setActiveCategoryButton(currentFilter);
+            renderProducts();
+            scrollToSectionWithOffset('#store');
+        }
+
+        function initFaqSearch() {
+            if (!faqSearchInput) return;
+            faqSearchInput.addEventListener('input', (event) => {
+                const value = event.target.value.trim().toLowerCase();
+                const items = Array.from(document.querySelectorAll('.faq-item'));
+                let visible = 0;
+                items.forEach((item) => {
+                    const text = item.textContent.toLowerCase();
+                    const show = !value || text.includes(value);
+                    item.classList.toggle('hidden', !show);
+                    if (show) visible += 1;
+                });
+                if (!value) faqSearchStatus.textContent = 'Type to filter the FAQ instantly.';
+                else if (visible === 0) faqSearchStatus.textContent = 'No FAQ matches that search yet.';
+                else faqSearchStatus.textContent = `${visible} question${visible > 1 ? 's' : ''} matched your search.`;
             });
         }
 

@@ -46,6 +46,30 @@ app.get('/api/live-deals', (_req, res) => {
   res.json(readLiveDeals());
 });
 
+app.post('/api/bundle-preview', (req, res) => {
+  const { items = [] } = req.body || {};
+  const cleanItems = items.filter(Boolean).map((item) => ({
+    id: item.id,
+    name: item.name,
+    category: item.category,
+    price: Number(item.price || 0)
+  }));
+  const total = cleanItems.reduce((sum, item) => sum + item.price, 0);
+  const hasSubscription = cleanItems.some((item) => item.category === 'subscriptions');
+  const hasGame = cleanItems.some((item) => item.category === 'games');
+  const hasGiftcard = cleanItems.some((item) => item.category === 'giftcards');
+  let note = 'Bundle request generated.';
+  if (hasSubscription && hasGame && hasGiftcard) note = 'Balanced starter pack: subscription, game, and wallet support all in one order.';
+  else if (hasSubscription && hasGame) note = 'Strong play-now bundle: access plus a game in one request.';
+  else if (hasGiftcard && cleanItems.length === 1) note = 'Gift-card-only request: simple and quick to deliver.';
+  res.json({
+    ok: true,
+    items: cleanItems,
+    total: Number(total.toFixed(2)),
+    note
+  });
+});
+
 app.post('/api/order-preview', (req, res) => {
   const { customer = {}, items = [], currency = '€' } = req.body || {};
   const total = items.reduce((sum, item) => sum + Number(item.lineTotal || 0), 0);

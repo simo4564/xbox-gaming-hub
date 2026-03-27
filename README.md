@@ -99,3 +99,13 @@ It also includes local gift card images inside `assets/` so the gift card produc
 - `update-live-deals.js` is the refresh script for that feed. It is designed to use **Xbox-Now** for discovery and **Allkeyshop** for cheapest pricing baselines.
 - Pricing rule: `storePrice = marketPrice * 1.20`.
 - If you update the feed manually, keep the `updatedAt` field current so the frontend shows the correct timestamp.
+
+
+## Latest Upgrade Notes
+
+This version adds:
+
+- **Shop by Goal** quick presets that jump the catalog into buyer-friendly paths.
+- **Bundle Builder** for combining a subscription, a game, and an optional gift card into one WhatsApp-ready order.
+- **FAQ search** so visitors can filter support questions instantly.
+- **Backend bundle preview** via `/api/bundle-preview` for cleaner pack summaries.
