@@ -4,7 +4,7 @@ This repository contains a production-ready digital storefront for selling Xbox 
 
 ## Contents
 
-* **index.html** – The main website. All of the UI and store logic lives in this file. It dynamically fetches product data from `products.json` (if present) and falls back to a built‑in dataset when necessary. It includes featured deals, favorites, recently viewed items, newsletter, and WhatsApp checkout.
+* **index.html** – The main website. All of the UI and store logic lives in this file. It dynamically fetches product data from `products.json` (if present) and falls back to a built‑in dataset when necessary. It includes featured deals, favorites, recently viewed items, newsletter, a promo countdown, and an expanded WhatsApp checkout flow with richer automated order text.
 * **pricing-source-map.json** – A configuration file that maps your internal product IDs to market source URLs (e.g. Allkeyshop) along with a margin percentage and fallback base price. This file is consumed by the update script.
 * **update-prices.js** – A Node.js script that reads the source map, attempts to scrape the latest market prices, applies the configured margin and writes `products.json`. If scraping fails, it falls back to the last known good price or the configured base price.
 * **products.json** – A generated data file containing the current product catalogue with calculated pricing. The front‑end loads this file automatically when present.
