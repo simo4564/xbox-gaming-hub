@@ -228,7 +228,7 @@
                 <div>
                     <p class="text-brand text-sm font-semibold uppercase tracking-[0.2em] mb-2">Editor’s picks</p>
                     <h2 class="text-3xl md:text-4xl font-bold text-white mb-3">Featured Deals</h2>
-                    <p class="text-gray-400 max-w-2xl">Hand-picked offers with the strongest savings right now. Great for first-time buyers and returning Xbox players.</p>
+                    <p class="text-gray-400 max-w-2xl">Hand-picked offers with real related artwork. Click any featured deal to open its own dedicated page with details, next steps, and direct checkout.</p>
                 </div>
                 <a href="#store" class="inline-flex items-center gap-2 text-brand hover:text-green-300 font-medium transition-colors">
                     Browse full catalog <i class="ph ph-arrow-right"></i>
@@ -639,6 +639,8 @@
     </button>
 
 
+    <script src="offer-data.js"></script>
+
     <!-- ========================================== -->
     <!-- APPLICATION LOGIC (JS) -->
     <!-- ========================================== -->
@@ -1011,30 +1013,42 @@
 
         function renderFeaturedDeals() {
             if (!featuredDealsGrid) return;
-            const featured = [...products]
-                .sort((a, b) => ((b.oldPrice || b.price) - b.price) - ((a.oldPrice || a.price) - a.price))
+            const offerEntries = Object.values(window.OFFER_DETAILS || {})
+                .map((offer) => ({ offer, product: products.find((item) => item.id === offer.productId) }))
+                .filter((entry) => entry.product)
                 .slice(0, 3);
-            featuredDealsGrid.innerHTML = featured.map((p, index) => {
-                const savings = p.oldPrice ? Math.round(((p.oldPrice - p.price) / p.oldPrice) * 100) : 0;
+
+            if (offerEntries.length === 0) {
+                featuredDealsGrid.innerHTML = '';
+                return;
+            }
+
+            featuredDealsGrid.innerHTML = offerEntries.map(({ offer, product }, index) => {
+                const savings = product.oldPrice ? Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100) : 0;
                 return `
-                    <div class="glass-card rounded-2xl p-6 border border-dark-border hover-lift reveal" style="transition-delay:${index * 100}ms;">
-                        <div class="flex items-start justify-between gap-4 mb-8">
-                            <div>
-                                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand/10 border border-brand/30 text-brand text-xs font-semibold uppercase tracking-[0.18em]">Top deal</span>
-                                <h3 class="text-2xl font-bold text-white mt-4 leading-tight">${p.name}</h3>
+                    <article class="glass-card rounded-2xl overflow-hidden border border-dark-border hover-lift reveal" style="transition-delay:${index * 100}ms;">
+                        <a href="offer.html?slug=${offer.slug}" class="block aspect-[16/10] overflow-hidden">
+                            <img src="${offer.image}" alt="${offer.imageAlt}" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                        </a>
+                        <div class="p-6">
+                            <div class="flex items-start justify-between gap-4 mb-5">
+                                <div>
+                                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand/10 border border-brand/30 text-brand text-xs font-semibold uppercase tracking-[0.18em]">${offer.kicker}</span>
+                                    <h3 class="text-2xl font-bold text-white mt-4 leading-tight">${offer.title}</h3>
+                                </div>
+                                <span class="text-xs font-bold px-3 py-2 rounded-full ${savings > 0 ? 'bg-red-600/20 text-red-300 border border-red-600/30' : 'bg-white/5 text-gray-300 border border-white/10'}">${offer.badge || (savings > 0 ? `Save ${savings}%` : 'Hot now')}</span>
                             </div>
-                            <span class="text-xs font-bold px-3 py-2 rounded-full ${savings > 0 ? 'bg-red-600/20 text-red-300 border border-red-600/30' : 'bg-white/5 text-gray-300 border border-white/10'}">${savings > 0 ? `Save ${savings}%` : 'Hot now'}</span>
+                            <p class="text-gray-400 mb-6 line-clamp-3">${offer.shortDescription}</p>
+                            <div class="flex items-end gap-3 mb-6">
+                                <span class="text-3xl font-bold text-white">${STORE_CONFIG.currency}${product.price.toFixed(2)}</span>
+                                ${product.oldPrice ? `<span class="text-gray-500 line-through">${STORE_CONFIG.currency}${product.oldPrice.toFixed(2)}</span>` : ''}
+                            </div>
+                            <div class="flex gap-3">
+                                <a href="offer.html?slug=${offer.slug}" class="flex-1 bg-brand hover:bg-brand-light text-white font-semibold py-3 rounded-xl transition-colors text-center">Open offer page</a>
+                                <button onclick="addToCart('${product.id}')" class="px-4 py-3 rounded-xl border border-dark-border hover:border-brand text-white transition-colors" aria-label="Add featured deal to cart"><i class="ph ph-shopping-cart-simple"></i></button>
+                            </div>
                         </div>
-                        <p class="text-gray-400 mb-8 line-clamp-3">${p.description}</p>
-                        <div class="flex items-end gap-3 mb-6">
-                            <span class="text-3xl font-bold text-white">${STORE_CONFIG.currency}${p.price.toFixed(2)}</span>
-                            ${p.oldPrice ? `<span class="text-gray-500 line-through">${STORE_CONFIG.currency}${p.oldPrice.toFixed(2)}</span>` : ''}
-                        </div>
-                        <div class="flex gap-3">
-                            <button onclick="openProductModal('${p.id}')" class="flex-1 bg-brand hover:bg-brand-light text-white font-semibold py-3 rounded-xl transition-colors">View deal</button>
-                            <button onclick="addToCart('${p.id}')" class="px-4 py-3 rounded-xl border border-dark-border hover:border-brand text-white transition-colors" aria-label="Add to cart"><i class="ph ph-shopping-cart-simple"></i></button>
-                        </div>
-                    </div>
+                    </article>
                 `;
             }).join('');
         }

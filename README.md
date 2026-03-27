@@ -8,6 +8,8 @@ This repository contains a production-ready digital storefront for selling Xbox 
 * **pricing-source-map.json** – A configuration file that maps your internal product IDs to market source URLs (e.g. Allkeyshop) along with a margin percentage and fallback base price. This file is consumed by the update script.
 * **update-prices.js** – A Node.js script that reads the source map, attempts to scrape the latest market prices, applies the configured margin and writes `products.json`. If scraping fails, it falls back to the last known good price or the configured base price.
 * **products.json** – A generated data file containing the current product catalogue with calculated pricing. The front‑end loads this file automatically when present.
+* **offer-data.js** – Shared featured-offer data used by the homepage and dedicated offer page.
+* **offer.html** – A dedicated offer page template. Featured offers on the homepage link here and load the correct content via the `slug` query parameter.
 * **README.md** – This document.
 
 ## Running Locally
@@ -41,6 +43,7 @@ Common changes can be performed directly inside **index.html**:
 | **Theme colors**           | Edit the `tailwind.config` definition at the top of the file. Brand colours live under `colors.brand`. |
 | **Hero images/text**       | Within the `#home` section, replace image URLs and modify headings or paragraphs as needed. |
 | **Product list**           | Update `pricing-source-map.json` and re‑run `node update-prices.js`, or edit the `fallbackProducts` array in the JavaScript if you want static products. |
+| **Featured offers**        | Edit `offer-data.js` to change offer images, labels, text, or which product each offer page points to. |
 | **Margin or pricing logic** | Modify `marginPercent` values in `pricing-source-map.json` or adjust the calculations in `update-prices.js`. |
 
 ## Deployment

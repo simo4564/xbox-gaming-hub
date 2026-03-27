@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gaming Community | Offer Details</title>
+  <meta name="description" content="Detailed featured offer page for Gaming Community with next steps and direct WhatsApp checkout.">
+  <meta property="og:title" content="Gaming Community | Featured Offer">
+  <meta property="og:description" content="View a dedicated offer page with visuals, what's included, and the next steps before ordering.">
+  <meta property="og:url" content="https://simo4564.github.io/xbox-gaming-hub/offer.html">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <script src="offer-data.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              DEFAULT: '#107C10',
+              light: '#1f8f1f',
+              dark: '#0e5c0e'
+            },
+            dark: {
+              bg: '#0b0b0b',
+              card: '#151515',
+              border: '#2a2a2a'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .glass-card { background: linear-gradient(145deg, #151515, #101010); border: 1px solid #2a2a2a; }
+  </style>
+</head>
+<body class="bg-dark-bg text-gray-200 font-sans antialiased">
+  <header class="sticky top-0 z-40 bg-black/70 backdrop-blur-xl border-b border-dark-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between gap-4">
+      <a href="index.html" class="inline-flex items-center gap-2 text-white font-bold text-lg">
+        <span class="w-8 h-8 rounded-full bg-brand flex items-center justify-center"><i class="ph-fill ph-game-controller text-white"></i></span>
+        Gaming<span class="text-brand">Community</span>
+      </a>
+      <a href="index.html#featured-deals" class="text-sm text-gray-300 hover:text-white transition-colors">Back to featured deals</a>
+    </div>
+  </header>
+
+  <main id="offer-page" class="min-h-screen">
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16">
+      <div id="offer-shell" class="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-10 items-start"></div>
+    </section>
+  </main>
+
+  <script>
+    const STORE_CONFIG = { whatsappNumber: '212636487541', currency: '€' };
+    const fallbackProducts = [
+      { id: 'gpu-1m', name: 'Xbox Game Pass Ultimate - 1 Month', category: 'subscriptions', price: 10.99, oldPrice: 14.99, description: 'Play hundreds of high-quality games on console, PC, and cloud. Includes EA Play.' },
+      { id: 'gpu-3m', name: 'Xbox Game Pass Ultimate - 3 Months', category: 'subscriptions', price: 28.50, oldPrice: 44.99, description: '3 months of Ultimate access. Play day one releases and enjoy multiplayer.' },
+      { id: 'gpc-12m', name: 'Xbox Game Pass Core - 12 Months', category: 'subscriptions', price: 42.90, oldPrice: 59.99, description: 'Formerly Xbox Live Gold. Online console multiplayer and catalog of 25+ games.' },
+      { id: 'gift-10', name: 'Xbox Gift Card 10 EUR', category: 'giftcards', price: 9.50, oldPrice: 10.00, description: 'Add funds to your Microsoft account. Buy games, add-ons, and more.' },
+      { id: 'gift-20', name: 'Xbox Gift Card 20 EUR', category: 'giftcards', price: 18.80, oldPrice: 20.00, description: 'Add funds to your Microsoft account. Buy games, add-ons, and more.' },
+      { id: 'gift-50', name: 'Xbox Gift Card 50 EUR', category: 'giftcards', price: 46.50, oldPrice: 50.00, description: 'Perfect for buying full-priced games or expanding your library.' },
+      { id: 'game-fc25', name: 'EA Sports FC 25 (Xbox One & Series X|S)', category: 'games', price: 54.90, oldPrice: 79.99, description: 'Experience the most true-to-life football experience ever.' },
+      { id: 'game-fh5', name: 'Forza Horizon 5 Standard Edition', category: 'games', price: 24.50, oldPrice: 69.99, description: 'Explore the vibrant and ever-evolving open world landscapes of Mexico.' },
+      { id: 'game-gta5', name: 'Grand Theft Auto V Premium Edition', category: 'games', price: 12.90, oldPrice: 29.99, description: 'Includes GTA V Story Mode and Grand Theft Auto Online.' },
+      { id: 'game-cyber', name: 'Cyberpunk 2077', category: 'games', price: 28.00, oldPrice: 59.99, description: 'An open-world, action-adventure RPG set in the dark future of Night City.' }
+    ];
+
+    async function loadProducts() {
+      try {
+        const res = await fetch('products.json');
+        if (!res.ok) throw new Error('products.json unavailable');
+        const data = await res.json();
+        return data.map((p) => ({ ...p, price: Number(p.price ?? p.finalPrice ?? 0), oldPrice: p.oldPrice ? Number(p.oldPrice) : null }));
+      } catch (e) {
+        return fallbackProducts;
+      }
+    }
+
+    function getSlug() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('slug') || 'game-pass-ultimate-3m';
+    }
+
+    function buildWhatsAppUrl(product, offer) {
+      const message = [
+        '*Hello, I want this featured offer from Gaming Community.*',
+        '',
+        `*Offer:* ${offer.title}`,
+        `*Product:* ${product.name}`,
+        `*Price:* ${STORE_CONFIG.currency}${product.price.toFixed(2)}`,
+        '',
+        '*What happens next:*',
+        '1. Confirm availability',
+        '2. Send payment instructions',
+        '3. Deliver the code on WhatsApp',
+        '',
+        'Please confirm availability and payment instructions.'
+      ].join('\n');
+      return `https://wa.me/${STORE_CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
+    }
+
+    function listMarkup(items) {
+      return items.map((item) => `
+        <li class="flex items-start gap-3">
+          <span class="mt-1 w-6 h-6 rounded-full bg-brand/15 text-brand flex items-center justify-center shrink-0"><i class="ph-bold ph-check"></i></span>
+          <span class="text-gray-300">${item}</span>
+        </li>
+      `).join('');
+    }
+
+    function relatedMarkup(relatedProducts) {
+      return relatedProducts.map((item) => `
+        <div class="glass-card rounded-2xl p-5">
+          <p class="text-xs uppercase tracking-[0.2em] text-brand mb-2">Related pick</p>
+          <h3 class="text-lg font-semibold text-white mb-2">${item.name}</h3>
+          <p class="text-sm text-gray-400 mb-4">${item.description}</p>
+          <div class="flex items-center justify-between gap-4">
+            <span class="text-xl font-bold text-white">${STORE_CONFIG.currency}${item.price.toFixed(2)}</span>
+            <a href="index.html#store" class="text-brand hover:text-green-300 text-sm font-medium">See in store</a>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    async function initOfferPage() {
+      const products = await loadProducts();
+      const slug = getSlug();
+      const offer = (window.OFFER_DETAILS || {})[slug] || Object.values(window.OFFER_DETAILS || {})[0];
+      const shell = document.getElementById('offer-shell');
+
+      if (!offer) {
+        shell.innerHTML = '<div class="glass-card rounded-3xl p-10"><h1 class="text-3xl font-bold text-white mb-4">Offer not found</h1><p class="text-gray-400">Please go back to the store and select another featured offer.</p></div>';
+        return;
+      }
+
+      const product = products.find((item) => item.id === offer.productId) || fallbackProducts.find((item) => item.id === offer.productId);
+      if (!product) {
+        shell.innerHTML = '<div class="glass-card rounded-3xl p-10"><h1 class="text-3xl font-bold text-white mb-4">Product missing</h1><p class="text-gray-400">This featured offer is not linked to a product yet.</p></div>';
+        return;
+      }
+
+      const relatedProducts = (offer.relatedIds || []).map((id) => products.find((item) => item.id === id) || fallbackProducts.find((item) => item.id === id)).filter(Boolean);
+      const savings = product.oldPrice ? Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100) : 0;
+      const waUrl = buildWhatsAppUrl(product, offer);
+      document.title = `Gaming Community | ${offer.title}`;
+
+      shell.innerHTML = `
+        <section>
+          <p class="text-sm uppercase tracking-[0.2em] text-brand font-semibold mb-3">${offer.kicker}</p>
+          <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-5">${offer.title}</h1>
+          <p class="text-lg text-gray-400 max-w-3xl mb-8">${offer.overview}</p>
+          <div class="overflow-hidden rounded-3xl border border-dark-border bg-dark-card shadow-2xl mb-8">
+            <img src="${offer.image}" alt="${offer.imageAlt}" class="w-full h-[320px] md:h-[460px] object-cover">
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="glass-card rounded-3xl p-8">
+              <h2 class="text-2xl font-bold text-white mb-5">Why this offer stands out</h2>
+              <ul class="space-y-4">${listMarkup(offer.highlights)}</ul>
+            </div>
+            <div class="glass-card rounded-3xl p-8">
+              <h2 class="text-2xl font-bold text-white mb-5">What you get</h2>
+              <ul class="space-y-4">${listMarkup(offer.included)}</ul>
+            </div>
+          </div>
+        </section>
+        <aside class="lg:sticky lg:top-24 space-y-6">
+          <div class="glass-card rounded-3xl p-8">
+            <div class="flex items-center justify-between gap-4 mb-6">
+              <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand/10 border border-brand/30 text-brand text-xs font-semibold uppercase tracking-[0.18em]">${offer.badge}</span>
+              <span class="text-sm font-bold px-3 py-2 rounded-full ${savings > 0 ? 'bg-red-600/20 text-red-300 border border-red-600/30' : 'bg-white/5 text-gray-300 border border-white/10'}">${savings > 0 ? `Save ${savings}%` : 'Hot now'}</span>
+            </div>
+            <h2 class="text-2xl font-bold text-white mb-3">${product.name}</h2>
+            <p class="text-gray-400 mb-6">${offer.shortDescription}</p>
+            <div class="flex items-end gap-3 mb-6">
+              <span class="text-4xl font-extrabold text-white">${STORE_CONFIG.currency}${product.price.toFixed(2)}</span>
+              ${product.oldPrice ? `<span class="text-lg text-gray-500 line-through">${STORE_CONFIG.currency}${product.oldPrice.toFixed(2)}</span>` : ''}
+            </div>
+            <div class="space-y-3">
+              <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-2xl transition-colors">
+                <i class="ph-fill ph-whatsapp-logo text-xl"></i> Order this offer on WhatsApp
+              </a>
+              <a href="index.html#store" class="w-full inline-flex items-center justify-center gap-2 border border-dark-border hover:border-brand text-white font-semibold py-4 rounded-2xl transition-colors">
+                View full store
+              </a>
+            </div>
+          </div>
+          <div class="glass-card rounded-3xl p-8">
+            <h2 class="text-2xl font-bold text-white mb-5">What happens next</h2>
+            <ol class="space-y-4">
+              ${offer.nextSteps.map((step, index) => `
+                <li class="flex items-start gap-3">
+                  <span class="mt-0.5 w-7 h-7 rounded-full bg-brand text-white flex items-center justify-center text-sm font-bold shrink-0">${index + 1}</span>
+                  <span class="text-gray-300">${step}</span>
+                </li>
+              `).join('')}
+            </ol>
+          </div>
+        </aside>
+      `;
+
+      if (relatedProducts.length) {
+        const relatedSection = document.createElement('section');
+        relatedSection.className = 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16';
+        relatedSection.innerHTML = `
+          <div class="border-t border-dark-border pt-12 mt-4">
+            <p class="text-sm uppercase tracking-[0.2em] text-brand font-semibold mb-3">What’s next</p>
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">You may also want these</h2>
+            <p class="text-gray-400 max-w-2xl mb-8">If this featured offer fits your setup, these related picks are usually the next things customers check.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">${relatedMarkup(relatedProducts)}</div>
+          </div>
+        `;
+        document.getElementById('offer-page').appendChild(relatedSection);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', initOfferPage);
+  </script>
+</body>
+</html>
