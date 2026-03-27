@@ -57,3 +57,10 @@ To deploy as a static site (e.g. via GitHub Pages, Netlify or Vercel):
 ## Last Updated Indicator
 
 The site displays a “Last updated” timestamp in the Digital Store section. It uses the latest `lastUpdated` value from `products.json`. If the file is not present, it indicates that fallback prices are in use.
+
+
+## New Useful Features
+
+- **Compare products**: buyers can compare up to 3 products side by side before deciding.
+- **Activation & Region Guide**: helps customers understand compatibility and what happens after payment.
+- **Featured offer pages**: image-led deals open on dedicated pages with next-step guidance.
