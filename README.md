@@ -85,3 +85,9 @@ npm start
 ```
 
 Then open `http://localhost:3000`.
+
+
+## Extra Pages
+
+This bundle now includes `terms.html`, `privacy.html`, and `refund.html` so the Legal links in the footer work correctly.
+It also includes local gift card images inside `assets/` so the gift card products use accurate artwork instead of unrelated external images.

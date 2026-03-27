@@ -1,6 +1,6 @@
 {
   "_comment": "This file maps your internal product IDs to their respective market source URLs (e.g. Allkeyshop) and sets individual markup margins. The update-prices.js script uses this to fetch the latest prices.",
-  "currency": "€",
+  "currency": "\u20ac",
   "products": [
     {
       "id": "gpu-1m",
@@ -42,7 +42,7 @@
       "sourceUrl": "https://www.allkeyshop.com/blog/buy-xbox-gift-card-xbox-one-cd-key-compare-prices/",
       "marginPercent": 20,
       "basePriceFallback": 7.92,
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Gift%20card.jpg",
+      "image": "assets/gift-card-10-eur.png",
       "badge": "",
       "description": "Add funds to your Microsoft account. Buy games, add-ons, and more."
     },
@@ -53,7 +53,7 @@
       "sourceUrl": "https://www.allkeyshop.com/blog/buy-xbox-gift-card-xbox-one-cd-key-compare-prices/",
       "marginPercent": 20,
       "basePriceFallback": 15.67,
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Gift%20card.jpg",
+      "image": "assets/gift-card-20-eur.png",
       "badge": "",
       "description": "Add funds to your Microsoft account. Buy games, add-ons, and more."
     },
@@ -64,7 +64,7 @@
       "sourceUrl": "https://www.allkeyshop.com/blog/buy-xbox-gift-card-xbox-one-cd-key-compare-prices/",
       "marginPercent": 20,
       "basePriceFallback": 38.75,
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Gift%20card.jpg",
+      "image": "assets/gift-card-50-eur.png",
       "badge": "Save 7%",
       "description": "Perfect for buying full-priced games or expanding your library."
     },

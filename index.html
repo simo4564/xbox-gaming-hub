@@ -99,7 +99,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16 md:h-20">
                 <!-- Logo -->
-                <a href="#" class="flex items-center gap-2 group">
+                <a href="index.html" class="flex items-center gap-2 group">
                     <div class="w-8 h-8 rounded-full bg-brand flex items-center justify-center group-hover:shadow-[0_0_15px_rgba(16,124,16,0.8)] transition-all">
                         <i class="ph-fill ph-game-controller text-white text-xl"></i>
                     </div>
@@ -623,7 +623,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
                 <div class="col-span-1 md:col-span-1">
-                    <a href="#" class="flex items-center gap-2 mb-4">
+                    <a href="index.html" class="flex items-center gap-2 mb-4">
                         <div class="w-8 h-8 rounded-full bg-brand flex items-center justify-center">
                             <i class="ph-fill ph-game-controller text-white text-xl"></i>
                         </div>
@@ -640,28 +640,28 @@
                 <div>
                     <h4 class="text-white font-bold mb-4">Store</h4>
                     <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="#" onclick="document.querySelector('[data-cat=\'subscriptions\']').click(); return false;" class="hover:text-brand transition-colors">Subscriptions</a></li>
-                        <li><a href="#" onclick="document.querySelector('[data-cat=\'games\']').click(); return false;" class="hover:text-brand transition-colors">Digital Games</a></li>
-                        <li><a href="#" onclick="document.querySelector('[data-cat=\'giftcards\']').click(); return false;" class="hover:text-brand transition-colors">Gift Cards</a></li>
-                        <li><a href="#store" class="hover:text-brand transition-colors">Special Offers</a></li>
+                        <li><a href="index.html?category=subscriptions#store" class="hover:text-brand transition-colors">Subscriptions</a></li>
+                        <li><a href="index.html?category=games#store" class="hover:text-brand transition-colors">Digital Games</a></li>
+                        <li><a href="index.html?category=giftcards#store" class="hover:text-brand transition-colors">Gift Cards</a></li>
+                        <li><a href="index.html#featured-deals" class="hover:text-brand transition-colors">Special Offers</a></li>
                     </ul>
                 </div>
 
                 <div>
                     <h4 class="text-white font-bold mb-4">Support</h4>
                     <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="#faq" class="hover:text-brand transition-colors">FAQ</a></li>
-                        <li><a href="#how-it-works" class="hover:text-brand transition-colors">How to Activate</a></li>
-                        <li><a href="https://wa.me/212636487541" class="hover:text-brand transition-colors" target="_blank" rel="noopener noreferrer">Contact Us</a></li>
+                        <li><a href="index.html#faq" class="hover:text-brand transition-colors">FAQ</a></li>
+                        <li><a href="index.html#activation-guide" class="hover:text-brand transition-colors">How to Activate</a></li>
+                        <li><a href="index.html#contact" class="hover:text-brand transition-colors">Contact Us</a></li>
                     </ul>
                 </div>
 
                 <div>
                     <h4 class="text-white font-bold mb-4">Legal</h4>
                     <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="#" class="hover:text-brand transition-colors">Terms of Service</a></li>
-                        <li><a href="#" class="hover:text-brand transition-colors">Privacy Policy</a></li>
-                        <li><a href="#" class="hover:text-brand transition-colors">Refund Policy</a></li>
+                        <li><a href="terms.html" class="hover:text-brand transition-colors">Terms of Service</a></li>
+                        <li><a href="privacy.html" class="hover:text-brand transition-colors">Privacy Policy</a></li>
+                        <li><a href="refund.html" class="hover:text-brand transition-colors">Refund Policy</a></li>
                     </ul>
                 </div>
             </div>
@@ -849,9 +849,9 @@
             { id: 'gpu-1m', name: 'Xbox Game Pass Ultimate - 1 Month', category: 'subscriptions', price: 10.99, oldPrice: 14.99, image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Xbox%20Game%20Pass%20new%20logo%20-%20colored%20version.svg', badge: 'Best Seller', description: 'Play hundreds of high-quality games on console, PC, and cloud. Includes EA Play.', inStock: true },
             { id: 'gpu-3m', name: 'Xbox Game Pass Ultimate - 3 Months', category: 'subscriptions', price: 28.50, oldPrice: 44.99, image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Xbox%20Game%20Pass%20new%20logo%20-%20colored%20version.svg', badge: 'Hot Deal', description: '3 months of Ultimate access. Play day one releases and enjoy multiplayer.', inStock: true },
             { id: 'gpc-12m', name: 'Xbox Game Pass Core - 12 Months', category: 'subscriptions', price: 42.90, oldPrice: 59.99, image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Xbox%20Game%20Pass%20logo%20-%20colored%20version.svg', badge: '', description: 'Formerly Xbox Live Gold. Online console multiplayer and catalog of 25+ games.', inStock: true },
-            { id: 'gift-10', name: 'Xbox Gift Card 10 EUR', category: 'giftcards', price: 9.50, oldPrice: 10.00, image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Gift%20card.jpg', badge: '', description: 'Add funds to your Microsoft account. Buy games, add-ons, and more.', inStock: true },
-            { id: 'gift-20', name: 'Xbox Gift Card 20 EUR', category: 'giftcards', price: 18.80, oldPrice: 20.00, image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Gift%20card.jpg', badge: '', description: 'Add funds to your Microsoft account. Buy games, add-ons, and more.', inStock: true },
-            { id: 'gift-50', name: 'Xbox Gift Card 50 EUR', category: 'giftcards', price: 46.50, oldPrice: 50.00, image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Gift%20card.jpg', badge: 'Save 7%', description: 'Perfect for buying full-priced games or expanding your library.', inStock: true },
+            { id: 'gift-10', name: 'Xbox Gift Card 10 EUR', category: 'giftcards', price: 9.50, oldPrice: 10.00, image: 'assets/gift-card-10-eur.png', badge: '', description: 'Add funds to your Microsoft account. Buy games, add-ons, and more.', inStock: true },
+            { id: 'gift-20', name: 'Xbox Gift Card 20 EUR', category: 'giftcards', price: 18.80, oldPrice: 20.00, image: 'assets/gift-card-20-eur.png', badge: '', description: 'Add funds to your Microsoft account. Buy games, add-ons, and more.', inStock: true },
+            { id: 'gift-50', name: 'Xbox Gift Card 50 EUR', category: 'giftcards', price: 46.50, oldPrice: 50.00, image: 'assets/gift-card-50-eur.png', badge: 'Save 7%', description: 'Perfect for buying full-priced games or expanding your library.', inStock: true },
             { id: 'game-fc25', name: 'EA Sports FC 25 (Xbox One & Series X|S)', category: 'games', price: 54.90, oldPrice: 79.99, image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Fc-25-logo.png', badge: 'New', description: 'Experience the most true-to-life football experience ever.', inStock: true },
             { id: 'game-cod6', name: 'Call of Duty: Black Ops 6 (Cross-Gen)', category: 'games', price: 62.00, oldPrice: 79.99, image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Call%20of%20Duty%20-%20Black%20Ops%206%20Logo.svg', badge: 'Trending', description: 'The signature Black Ops series returns with an epic campaign and multiplayer.', inStock: true },
             { id: 'game-fh5', name: 'Forza Horizon 5 Standard Edition', category: 'games', price: 24.50, oldPrice: 69.99, image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Forza_Horizon_5_gameplays.jpg', badge: '', description: 'Explore the vibrant and ever-evolving open world landscapes of Mexico.', inStock: true },
@@ -897,6 +897,7 @@
             setYear();
             setupEventListeners();
             await loadProducts();
+            applyInitialRouteState();
             renderFeaturedDeals();
             renderProducts();
             renderRecentlyViewed();
@@ -906,6 +907,16 @@
             initScrollAnimations();
             setLastUpdated();
             startCountdown();
+        }
+
+        function applyInitialRouteState() {
+            const params = new URLSearchParams(window.location.search);
+            const category = params.get('category');
+            const allowed = new Set(['all', 'subscriptions', 'games', 'giftcards', 'favorites']);
+            if (category && allowed.has(category)) {
+                currentFilter = category;
+                setActiveCategoryButton(category);
+            }
         }
 
         // Set Copyright Year
