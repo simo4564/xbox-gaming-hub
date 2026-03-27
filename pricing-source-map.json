@@ -1,0 +1,138 @@
+{
+  "_comment": "This file maps your internal product IDs to their respective market source URLs (e.g. Allkeyshop) and sets individual markup margins. The update-prices.js script uses this to fetch the latest prices.",
+  "currency": "€",
+  "products": [
+    {
+      "id": "gpu-1m",
+      "name": "Xbox Game Pass Ultimate - 1 Month",
+      "category": "subscriptions",
+      "sourceUrl": "https://www.allkeyshop.com/blog/buy-xbox-game-pass-ultimate-cd-key-compare-prices/",
+      "marginPercent": 20,
+      "basePriceFallback": 9.16,
+      "image": "https://placehold.co/400x600/151515/107C10?text=Game+Pass+Ultimate+1+Month",
+      "badge": "Best Seller",
+      "description": "Play hundreds of high-quality games on console, PC, and cloud. Includes EA Play."
+    },
+    {
+      "id": "gpu-3m",
+      "name": "Xbox Game Pass Ultimate - 3 Months",
+      "category": "subscriptions",
+      "sourceUrl": "https://www.allkeyshop.com/blog/buy-xbox-game-pass-ultimate-cd-key-compare-prices/",
+      "marginPercent": 20,
+      "basePriceFallback": 23.75,
+      "image": "https://placehold.co/400x600/151515/107C10?text=Game+Pass+Ultimate+3+Months",
+      "badge": "Hot Deal",
+      "description": "3 months of Ultimate access. Play day one releases and enjoy multiplayer."
+    },
+    {
+      "id": "gpc-12m",
+      "name": "Xbox Game Pass Core - 12 Months",
+      "category": "subscriptions",
+      "sourceUrl": "https://www.allkeyshop.com/blog/buy-xbox-game-pass-core-cd-key-compare-prices/",
+      "marginPercent": 20,
+      "basePriceFallback": 35.75,
+      "image": "https://placehold.co/400x600/151515/1ED760?text=Game+Pass+Core+12+Months",
+      "badge": "",
+      "description": "Formerly Xbox Live Gold. Online console multiplayer and catalog of 25+ games."
+    },
+    {
+      "id": "gift-10",
+      "name": "Xbox Gift Card 10 EUR",
+      "category": "giftcards",
+      "sourceUrl": "https://www.allkeyshop.com/blog/buy-xbox-gift-card-xbox-one-cd-key-compare-prices/",
+      "marginPercent": 20,
+      "basePriceFallback": 7.92,
+      "image": "https://placehold.co/400x600/151515/ffffff?text=Xbox+Gift+Card+10+EUR",
+      "badge": "",
+      "description": "Add funds to your Microsoft account. Buy games, add-ons, and more."
+    },
+    {
+      "id": "gift-20",
+      "name": "Xbox Gift Card 20 EUR",
+      "category": "giftcards",
+      "sourceUrl": "https://www.allkeyshop.com/blog/buy-xbox-gift-card-xbox-one-cd-key-compare-prices/",
+      "marginPercent": 20,
+      "basePriceFallback": 15.67,
+      "image": "https://placehold.co/400x600/151515/ffffff?text=Xbox+Gift+Card+20+EUR",
+      "badge": "",
+      "description": "Add funds to your Microsoft account. Buy games, add-ons, and more."
+    },
+    {
+      "id": "gift-50",
+      "name": "Xbox Gift Card 50 EUR",
+      "category": "giftcards",
+      "sourceUrl": "https://www.allkeyshop.com/blog/buy-xbox-gift-card-xbox-one-cd-key-compare-prices/",
+      "marginPercent": 20,
+      "basePriceFallback": 38.75,
+      "image": "https://placehold.co/400x600/151515/ffffff?text=Xbox+Gift+Card+50+EUR",
+      "badge": "Save 7%",
+      "description": "Perfect for buying full-priced games or expanding your library."
+    },
+    {
+      "id": "game-fc25",
+      "name": "EA Sports FC 25 (Xbox One & Series X|S)",
+      "category": "games",
+      "sourceUrl": "https://www.allkeyshop.com/blog/buy-ea-sports-fc-25-xbox-series-cd-key-compare-prices/",
+      "marginPercent": 20,
+      "basePriceFallback": 45.75,
+      "image": "https://placehold.co/400x600/1a1a1a/ffffff?text=EA+Sports+FC+25",
+      "badge": "New",
+      "description": "Experience the most true-to-life football experience ever."
+    },
+    {
+      "id": "game-cod6",
+      "name": "Call of Duty: Black Ops 6 (Cross-Gen)",
+      "category": "games",
+      "sourceUrl": "https://www.allkeyshop.com/blog/buy-call-of-duty-black-ops-6-xbox-cd-key-compare-prices/",
+      "marginPercent": 20,
+      "basePriceFallback": 51.67,
+      "image": "https://placehold.co/400x600/1a1a1a/ff4444?text=Black+Ops+6",
+      "badge": "Trending",
+      "description": "The signature Black Ops series returns with an epic campaign and multiplayer."
+    },
+    {
+      "id": "game-fh5",
+      "name": "Forza Horizon 5 Standard Edition",
+      "category": "games",
+      "sourceUrl": "https://www.allkeyshop.com/blog/buy-forza-horizon-5-cd-key-compare-prices/",
+      "marginPercent": 20,
+      "basePriceFallback": 20.42,
+      "image": "https://placehold.co/400x600/1a1a1a/ff8800?text=Forza+Horizon+5",
+      "badge": "",
+      "description": "Explore the vibrant and ever-evolving open world landscapes of Mexico."
+    },
+    {
+      "id": "game-gta5",
+      "name": "Grand Theft Auto V Premium Edition",
+      "category": "games",
+      "sourceUrl": "https://www.allkeyshop.com/blog/buy-grand-theft-auto-v-premium-edition-cd-key-compare-prices/",
+      "marginPercent": 20,
+      "basePriceFallback": 10.75,
+      "image": "https://placehold.co/400x600/1a1a1a/44ff44?text=GTA+V+Premium",
+      "badge": "Must Have",
+      "description": "Includes GTA V Story Mode and Grand Theft Auto Online."
+    },
+    {
+      "id": "game-mc",
+      "name": "Minecraft (Xbox)",
+      "category": "games",
+      "sourceUrl": "https://www.allkeyshop.com/blog/buy-minecraft-xbox-live-cd-key-compare-prices/",
+      "marginPercent": 20,
+      "basePriceFallback": 13.75,
+      "image": "https://placehold.co/400x600/1a1a1a/00aa00?text=Minecraft",
+      "badge": "",
+      "description": "Explore randomly generated worlds and build amazing things."
+    },
+    {
+      "id": "game-cyber",
+      "name": "Cyberpunk 2077",
+      "category": "games",
+      "sourceUrl": "https://www.allkeyshop.com/blog/buy-cyberpunk-2077-xbox-cd-key-compare-prices/",
+      "marginPercent": 20,
+      "basePriceFallback": 23.33,
+      "image": "https://placehold.co/400x600/1a1a1a/ffff00?text=Cyberpunk+2077",
+      "badge": "",
+      "description": "An open-world, action-adventure RPG set in the dark future of Night City."
+    }
+  ]
+}
