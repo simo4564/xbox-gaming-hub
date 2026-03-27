@@ -25,6 +25,8 @@
         <li><a href="#upcoming">Upcoming</a></li>
         <li><a href="#subscriptions">Plans</a></li>
         <li><a href="#contact">Contact</a></li>
+        <!-- Wishlist link -->
+        <li><a href="#wishlist">Wishlist</a></li>
         <!-- Snipcart cart link -->
         <li><a href="#" class="snipcart-checkout">Cart (<span class="snipcart-items-count">0</span>)</a></li>
         <!-- Theme toggle button -->
@@ -56,15 +58,40 @@
       <div class="search-container">
         <input type="text" id="search-input" placeholder="Search games...">
       </div>
+      <!-- Sort and category filter -->
+      <div class="filter-sort-container">
+        <label for="sort-select">Sort by:</label>
+        <select id="sort-select">
+          <option value="default">Default</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="rating-desc">Rating: High to Low</option>
+          <option value="rating-asc">Rating: Low to High</option>
+          <option value="alpha">Alphabetical</option>
+        </select>
+        <label for="category-filter">Category:</label>
+        <select id="category-filter">
+          <option value="all">All</option>
+          <option value="action">Action</option>
+          <option value="horror">Horror</option>
+          <option value="rpg">RPG</option>
+          <option value="platformer">Platformer</option>
+          <option value="adventure">Adventure</option>
+          <option value="rhythm">Rhythm</option>
+          <option value="multiplayer">Multiplayer</option>
+        </select>
+      </div>
       <div class="card-grid">
         <!-- Alan Wake 2 -->
-        <div class="card fade-in-up">
+        <div class="card fade-in-up" data-rating="4.5" data-category="horror">
           <div class="icon"><i class="fas fa-ghost"></i></div>
           <h3>Alan Wake 2</h3>
           <p>A surreal blend of detective procedural and survival horror where author Alan Wake fights to escape an alternate dimension.</p>
           <div class="rating">
             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
           </div>
+          <!-- Wishlist button -->
+          <button class="wishlist-btn"><i class="far fa-heart"></i></button>
           <button class="btn buy-btn snipcart-add-item"
                   data-item-id="alan-wake-2"
                   data-item-name="Alan Wake 2"
@@ -75,13 +102,15 @@
           </button>
         </div>
         <!-- Baldur's Gate 3 -->
-        <div class="card fade-in-up">
+        <div class="card fade-in-up" data-rating="5" data-category="rpg">
           <div class="icon"><i class="fas fa-dragon"></i></div>
           <h3>Baldur’s Gate 3</h3>
           <p>A landmark role‑playing fantasy epic that offers near‑limitless narrative freedom and imaginative scope.</p>
           <div class="rating">
             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
           </div>
+          <!-- Wishlist button -->
+          <button class="wishlist-btn"><i class="far fa-heart"></i></button>
           <button class="btn buy-btn snipcart-add-item"
                   data-item-id="baldurs-gate-3"
                   data-item-name="Baldur's Gate 3"
@@ -92,13 +121,15 @@
           </button>
         </div>
         <!-- Psychonauts 2 -->
-        <div class="card fade-in-up">
+        <div class="card fade-in-up" data-rating="3.5" data-category="platformer">
           <div class="icon"><i class="fas fa-brain"></i></div>
           <h3>Psychonauts 2</h3>
           <p>A creative 3D platformer where psychic acrobat Raz explores minds filled with distinct characters and surprises.</p>
           <div class="rating">
             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
           </div>
+          <!-- Wishlist button -->
+          <button class="wishlist-btn"><i class="far fa-heart"></i></button>
           <button class="btn buy-btn snipcart-add-item"
                   data-item-id="psychonauts-2"
                   data-item-name="Psychonauts 2"
@@ -109,13 +140,15 @@
           </button>
         </div>
         <!-- Elden Ring -->
-        <div class="card fade-in-up">
+        <div class="card fade-in-up" data-rating="4" data-category="rpg">
           <div class="icon"><i class="fas fa-ring"></i></div>
           <h3>Elden Ring</h3>
           <p>An expansive fantasy opera with spectacular landscapes, bizarre characters and challenging bosses in an unrivalled open world.</p>
           <div class="rating">
             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
           </div>
+          <!-- Wishlist button -->
+          <button class="wishlist-btn"><i class="far fa-heart"></i></button>
           <button class="btn buy-btn snipcart-add-item"
                   data-item-id="elden-ring"
                   data-item-name="Elden Ring"
@@ -126,13 +159,15 @@
           </button>
         </div>
         <!-- Hades -->
-        <div class="card fade-in-up">
+        <div class="card fade-in-up" data-rating="4.5" data-category="action">
           <div class="icon"><i class="fas fa-fire"></i></div>
           <h3>Hades</h3>
           <p>A roguelike action adventure where you battle through the underworld alongside witty gods of Greek mythology.</p>
           <div class="rating">
             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
           </div>
+          <!-- Wishlist button -->
+          <button class="wishlist-btn"><i class="far fa-heart"></i></button>
           <button class="btn buy-btn snipcart-add-item"
                   data-item-id="hades"
                   data-item-name="Hades"
@@ -143,13 +178,15 @@
           </button>
         </div>
         <!-- Hi‑Fi Rush -->
-        <div class="card fade-in-up">
+        <div class="card fade-in-up" data-rating="3" data-category="rhythm">
           <div class="icon"><i class="fas fa-music"></i></div>
           <h3>Hi‑Fi Rush</h3>
           <p>A rhythm‑driven action brawler in which enemies and environments move to the beat, delivering a colourful music‑centred experience.</p>
           <div class="rating">
             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
           </div>
+          <!-- Wishlist button -->
+          <button class="wishlist-btn"><i class="far fa-heart"></i></button>
           <button class="btn buy-btn snipcart-add-item"
                   data-item-id="hi-fi-rush"
                   data-item-name="Hi-Fi Rush"
@@ -160,13 +197,15 @@
           </button>
         </div>
         <!-- Indiana Jones and the Great Circle -->
-        <div class="card fade-in-up">
+        <div class="card fade-in-up" data-rating="3.5" data-category="adventure">
           <div class="icon"><i class="fas fa-hat-cowboy"></i></div>
           <h3>Indiana Jones &amp; the Great Circle</h3>
           <p>A cinematic adventure where Indy punches and puzzles his way around the world on the trail of mythological secrets.</p>
           <div class="rating">
             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
           </div>
+          <!-- Wishlist button -->
+          <button class="wishlist-btn"><i class="far fa-heart"></i></button>
           <button class="btn buy-btn snipcart-add-item"
                   data-item-id="indiana-jones-great-circle"
                   data-item-name="Indiana Jones and the Great Circle"
@@ -177,13 +216,15 @@
           </button>
         </div>
         <!-- Sea of Thieves -->
-        <div class="card fade-in-up">
+        <div class="card fade-in-up" data-rating="2.5" data-category="multiplayer">
           <div class="icon"><i class="fas fa-ship"></i></div>
           <h3>Sea of Thieves</h3>
           <p>A cooperative pirate adventure delivering memorable co‑op escapades across colourful, cartoon oceans.</p>
           <div class="rating">
             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i><i class="far fa-star"></i>
           </div>
+          <!-- Wishlist button -->
+          <button class="wishlist-btn"><i class="far fa-heart"></i></button>
           <button class="btn buy-btn snipcart-add-item"
                   data-item-id="sea-of-thieves"
                   data-item-name="Sea of Thieves"
@@ -361,6 +402,13 @@
         <summary>Can I upgrade or downgrade my Game Pass plan later?</summary>
         <p>Yes—Microsoft allows you to change your subscription tier at any time through your account settings.</p>
       </details>
+    </section>
+
+    <!-- Wishlist Section -->
+    <section id="wishlist" class="section">
+      <h2>Your Wishlist</h2>
+      <p class="wishlist-empty">You haven't added any games to your wishlist yet. Tap the heart icons on game cards to save them here.</p>
+      <div id="wishlist-items" class="card-grid"></div>
     </section>
 
     <section id="contact" class="section">

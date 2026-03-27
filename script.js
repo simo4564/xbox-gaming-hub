@@ -48,21 +48,171 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* Load more functionality */
+  /* Load more functionality
+   * Keep a reference to all game cards so that other features (sorting, filtering)
+   * can re‑use the same collection. We expose the updateVisibility function
+   * so that it can be called when cards are re‑ordered or when new cards are
+   * displayed. By default, only the first four cards are visible; clicking
+   * the “Load More” button reveals four more at a time. When the card order
+   * changes (through sorting or filtering), we hide the Load More button and
+   * show all filtered cards. */
   const loadMoreBtn = document.getElementById('load-more');
-  if (loadMoreBtn) {
-    const cards = Array.from(document.querySelectorAll('#games .card'));
-    let visibleCount = 4;
-    function updateVisibility() {
-      cards.forEach((card, index) => {
-        card.style.display = index < visibleCount ? 'flex' : 'none';
-      });
-      loadMoreBtn.style.display = visibleCount >= cards.length ? 'none' : 'block';
+  let gameCards = Array.from(document.querySelectorAll('#games .card'));
+  let visibleCount = 4;
+  function updateVisibility() {
+    gameCards.forEach((card, index) => {
+      card.style.display = index < visibleCount ? 'flex' : 'none';
+    });
+    if (loadMoreBtn) {
+      loadMoreBtn.style.display = visibleCount >= gameCards.length ? 'none' : 'block';
     }
+  }
+  if (loadMoreBtn) {
     updateVisibility();
     loadMoreBtn.addEventListener('click', () => {
       visibleCount += 4;
       updateVisibility();
+    });
+  }
+
+  /* Sorting and category filtering
+   * Users can sort games by price, rating or name and filter by genre. When
+   * either select changes, we rebuild the card list in the chosen order and
+   * hide the Load More button so all matching games are visible. */
+  const sortSelect = document.getElementById('sort-select');
+  const categorySelect = document.getElementById('category-filter');
+  const cardsContainer = document.querySelector('#games .card-grid');
+  function applySortFilter() {
+    if (!cardsContainer) return;
+    const category = categorySelect ? categorySelect.value : 'all';
+    const sortOption = sortSelect ? sortSelect.value : 'default';
+    // Start from original order by referencing gameCards array
+    let filtered = gameCards.filter(card => {
+      return category === 'all' || card.dataset.category === category;
+    });
+    // Sorting logic
+    filtered.sort((a, b) => {
+      if (sortOption === 'price-asc' || sortOption === 'price-desc') {
+        const priceA = parseFloat(a.querySelector('.snipcart-add-item').dataset.itemPrice);
+        const priceB = parseFloat(b.querySelector('.snipcart-add-item').dataset.itemPrice);
+        return sortOption === 'price-asc' ? priceA - priceB : priceB - priceA;
+      }
+      if (sortOption === 'rating-asc' || sortOption === 'rating-desc') {
+        const ratingA = parseFloat(a.dataset.rating);
+        const ratingB = parseFloat(b.dataset.rating);
+        return sortOption === 'rating-asc' ? ratingA - ratingB : ratingB - ratingA;
+      }
+      if (sortOption === 'alpha') {
+        const nameA = a.querySelector('h3').textContent.trim().toLowerCase();
+        const nameB = b.querySelector('h3').textContent.trim().toLowerCase();
+        return nameA.localeCompare(nameB);
+      }
+      // Default: preserve original order by comparing indices in gameCards
+      return gameCards.indexOf(a) - gameCards.indexOf(b);
+    });
+    // Rebuild DOM
+    cardsContainer.innerHTML = '';
+    filtered.forEach(card => cardsContainer.appendChild(card));
+    // Update the gameCards reference to the new order
+    gameCards = Array.from(cardsContainer.children);
+    // Reveal all filtered results and hide the load more button
+    visibleCount = gameCards.length;
+    updateVisibility();
+  }
+  if (sortSelect) sortSelect.addEventListener('change', applySortFilter);
+  if (categorySelect) categorySelect.addEventListener('change', applySortFilter);
+
+  /* Wishlist functionality
+   * Users can click the heart icon on any game card to save it to their
+   * personal wishlist. The wishlist is stored in localStorage so it
+   * persists between visits. The wishlist section at the bottom of the page
+   * displays all saved items and allows removal. */
+  const wishlistBtns = document.querySelectorAll('.wishlist-btn');
+  const wishlistContainerEl = document.getElementById('wishlist-items');
+  const wishlistEmptyEl = document.querySelector('#wishlist .wishlist-empty');
+  // Load saved wishlist or start with empty array
+  let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+  // Helper functions
+  const saveWishlist = () => {
+    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+  };
+  const findWishlistIndex = id => wishlist.findIndex(item => item.id === id);
+  const updateWishlistDisplay = () => {
+    if (!wishlistContainerEl) return;
+    wishlistContainerEl.innerHTML = '';
+    if (wishlist.length === 0) {
+      if (wishlistEmptyEl) wishlistEmptyEl.style.display = 'block';
+      return;
+    }
+    if (wishlistEmptyEl) wishlistEmptyEl.style.display = 'none';
+    wishlist.forEach(item => {
+      const card = document.createElement('div');
+      card.classList.add('card');
+      card.innerHTML = `
+        <h3>${item.name}</h3>
+        <p>${item.description}</p>
+        <div class="price">$${parseFloat(item.price).toFixed(2)}</div>
+        <button class="wishlist-remove" data-id="${item.id}" aria-label="Remove from wishlist">
+          <i class="fas fa-trash"></i>
+        </button>
+      `;
+      wishlistContainerEl.appendChild(card);
+    });
+  };
+  // Initialize heart states and attach click events
+  wishlistBtns.forEach(btn => {
+    const card = btn.closest('.card');
+    const addBtn = card ? card.querySelector('.snipcart-add-item') : null;
+    if (!addBtn) return;
+    const itemId = addBtn.dataset.itemId;
+    // Set active state if item already in wishlist
+    if (wishlist.some(item => item.id === itemId)) {
+      btn.classList.add('active');
+    }
+    btn.addEventListener('click', () => {
+      // Toggle active class
+      btn.classList.toggle('active');
+      const index = findWishlistIndex(itemId);
+      if (index === -1) {
+        // Add item to wishlist
+        wishlist.push({
+          id: itemId,
+          name: addBtn.dataset.itemName,
+          price: addBtn.dataset.itemPrice,
+          description: addBtn.dataset.itemDescription
+        });
+      } else {
+        // Remove from wishlist
+        wishlist.splice(index, 1);
+      }
+      saveWishlist();
+      updateWishlistDisplay();
+    });
+  });
+  // Display wishlist on load
+  updateWishlistDisplay();
+  // Remove items when clicking trash icon (delegation)
+  if (wishlistContainerEl) {
+    wishlistContainerEl.addEventListener('click', event => {
+      const removeBtn = event.target.closest('.wishlist-remove');
+      if (removeBtn) {
+        const id = removeBtn.dataset.id;
+        // Remove from wishlist array
+        const idx = findWishlistIndex(id);
+        if (idx !== -1) {
+          wishlist.splice(idx, 1);
+          saveWishlist();
+          updateWishlistDisplay();
+          // Also update heart icon in game card
+          document.querySelectorAll('.wishlist-btn').forEach(button => {
+            const card = button.closest('.card');
+            const addBtn = card.querySelector('.snipcart-add-item');
+            if (addBtn.dataset.itemId === id) {
+              button.classList.remove('active');
+            }
+          });
+        }
+      }
     });
   }
 
