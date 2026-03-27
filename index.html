@@ -665,11 +665,12 @@
                     <h3 class="font-bold text-white text-xl mb-4 flex items-center gap-2">
                         <i class="ph-fill ph-chat-circle-text text-brand text-2xl"></i> Send a Message
                     </h3>
-                    <form onsubmit="event.preventDefault(); alert('Please contact us via WhatsApp or email.');" class="space-y-4">
-                        <input aria-label="Your Name" type="text" placeholder="Your Name" class="w-full bg-dark-bg border border-dark-border rounded px-3 py-2 text-sm text-white focus:border-brand outline-none">
-                        <input aria-label="Your Email" type="email" placeholder="Your Email" class="w-full bg-dark-bg border border-dark-border rounded px-3 py-2 text-sm text-white focus:border-brand outline-none">
-                        <textarea aria-label="Your Message" rows="3" placeholder="Your Message" class="w-full bg-dark-bg border border-dark-border rounded px-3 py-2 text-sm text-white focus:border-brand outline-none resize-none"></textarea>
+                    <form id="contact-form" class="space-y-4">
+                        <input id="contact-name" aria-label="Your Name" type="text" placeholder="Your Name" class="w-full bg-dark-bg border border-dark-border rounded px-3 py-2 text-sm text-white focus:border-brand outline-none" required>
+                        <input id="contact-email" aria-label="Your Email" type="email" placeholder="Your Email" class="w-full bg-dark-bg border border-dark-border rounded px-3 py-2 text-sm text-white focus:border-brand outline-none" required>
+                        <textarea id="contact-message" aria-label="Your Message" rows="3" placeholder="Your Message" class="w-full bg-dark-bg border border-dark-border rounded px-3 py-2 text-sm text-white focus:border-brand outline-none resize-none" required></textarea>
                         <button type="submit" class="w-full bg-brand hover:bg-brand-light text-white font-semibold py-2 rounded-lg transition-colors" aria-label="Send message">Send</button>
+                        <p id="contact-form-status" class="text-sm text-gray-500"></p>
                     </form>
                 </div>
             </div>
@@ -957,7 +958,8 @@
             whatsappNumber: '212636487541',
             currency: '€',
             siteName: 'Gaming Community',
-            siteUrl: 'https://simo4564.github.io/xbox-gaming-hub/'
+            siteUrl: 'https://simo4564.github.io/xbox-gaming-hub/',
+            apiBase: '/api'
         };
 
         // --- FALLBACK DATA ---
@@ -1130,21 +1132,28 @@
 
         // Load Products (Try external JSON, fallback to local)
         async function loadProducts() {
-            try {
-                // Attempt to fetch from the file updated by Node.js
-                const res = await fetch('products.json');
-                if(!res.ok) throw new Error('Network response was not ok');
-                const data = await res.json();
-                // Normalize pricing fields to match expected keys
-                products = data.map(p => ({
-                    ...p,
-                    price: Number(p.price ?? p.finalPrice ?? 0),
-                    oldPrice: p.oldPrice ? Number(p.oldPrice) : null,
-                }));
-            } catch (e) {
-                console.warn("Could not load products.json, using fallback data. This is normal if running locally without a server.");
-                products = fallbackProducts;
+            const candidates = [`${STORE_CONFIG.apiBase}/products`, 'products.json'];
+            for (const candidate of candidates) {
+                try {
+                    const res = await fetch(candidate);
+                    if (!res.ok) throw new Error('Network response was not ok');
+                    const data = await res.json();
+                    products = data.map(p => ({
+                        ...p,
+                        sourceUrl: p.sourceUrl || p.source_url,
+                        marketPrice: Number(p.marketPrice ?? p.market_price ?? 0),
+                        marginPercent: Number(p.marginPercent ?? p.margin_percent ?? 0),
+                        price: Number(p.price ?? p.finalPrice ?? 0),
+                        oldPrice: (p.oldPrice ?? p.old_price) != null ? Number(p.oldPrice ?? p.old_price) : null,
+                        lastUpdated: p.lastUpdated || p.last_updated || null,
+                        priceStatus: p.priceStatus || p.price_status || null,
+                    }));
+                    return;
+                } catch (error) {
+                    console.warn(`Could not load product source: ${candidate}`);
+                }
             }
+            products = fallbackProducts;
         }
 
         async function loadLiveDeals() {
@@ -1320,6 +1329,9 @@
 
             // Checkout
             document.getElementById('checkout-btn').addEventListener('click', handleCheckout);
+
+            const contactForm = document.getElementById('contact-form');
+            contactForm?.addEventListener('submit', handleContactFormSubmit);
             
             // Modal Close
             document.getElementById('close-modal-btn').addEventListener('click', closeProductModal);
@@ -2076,8 +2088,46 @@
             setInterval(updateCountdown, 30000);
         }
 
+        async function submitOrderRecord(orderPayload) {
+            try {
+                const res = await fetch(`${STORE_CONFIG.apiBase}/orders`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(orderPayload)
+                });
+                if (!res.ok) throw new Error('Order persistence failed');
+                return await res.json();
+            } catch (error) {
+                return null;
+            }
+        }
+
+        async function handleContactFormSubmit(event) {
+            event.preventDefault();
+            const statusEl = document.getElementById('contact-form-status');
+            const payload = {
+                name: document.getElementById('contact-name').value.trim(),
+                email: document.getElementById('contact-email').value.trim(),
+                message: document.getElementById('contact-message').value.trim()
+            };
+            statusEl.textContent = 'Sending…';
+            try {
+                const res = await fetch(`${STORE_CONFIG.apiBase}/contact`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+                if (!res.ok) throw new Error(data.detail || data.message || 'Unable to send');
+                statusEl.textContent = 'Message sent successfully. We will get back to you soon.';
+                event.target.reset();
+            } catch (error) {
+                statusEl.textContent = 'Could not send message right now. Please use WhatsApp as backup.';
+            }
+        }
+
         // WhatsApp Checkout Builder
-        function handleCheckout() {
+        async function handleCheckout() {
             if (cart.length === 0) return;
 
             const ref = 'GC-' + Math.floor(10000 + Math.random() * 90000);
@@ -2120,8 +2170,34 @@
 
             const encodedMsg = encodeURIComponent(msg);
             const waUrl = `https://wa.me/${STORE_CONFIG.whatsappNumber}?text=${encodedMsg}`;
-            
-            window.open(waUrl, '_blank');
+
+            const orderPayload = {
+                customerName,
+                deliveryEmail: email !== '—' ? email : null,
+                gamerTag: null,
+                region: region !== '—' ? region : null,
+                preferredLanguage: language !== '—' ? language : null,
+                customerNote: note !== '—' ? note : null,
+                currency: 'EUR',
+                subtotal: Number(total.toFixed(2)),
+                total: Number(total.toFixed(2)),
+                source: 'whatsapp',
+                whatsappUrl: waUrl,
+                items: cart.map((item) => ({
+                    productId: item.id,
+                    name: item.name,
+                    category: item.category,
+                    quantity: item.qty,
+                    unitPrice: Number(item.price.toFixed(2)),
+                    lineTotal: Number((item.price * item.qty).toFixed(2))
+                }))
+            };
+
+            const savedOrder = await submitOrderRecord(orderPayload);
+            if (savedOrder?.orderReference) {
+                msg = msg.replace(ref, savedOrder.orderReference);
+            }
+            window.open(`https://wa.me/${STORE_CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`, '_blank');
         }
 
         // Toast

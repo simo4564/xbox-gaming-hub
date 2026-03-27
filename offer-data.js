@@ -33,7 +33,7 @@ window.OFFER_DETAILS = {
     badge: "Top-up pick",
     title: "Xbox Gift Card 50 EUR — Featured Offer",
     kicker: "Wallet top-up",
-    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Gift%20card%20assortment.jpg",
+    image: "assets/gift-card-50-eur.png?v=4",
     imageAlt: "Assortment of gift cards",
     shortDescription: "A strong choice for topping up your wallet when you want flexibility for games, add-ons, or upcoming releases.",
     overview: "This offer is perfect if you want flexible Xbox spending power instead of a single product code. It works well for players who buy multiple add-ons, season passes, or want to save balance for a bigger release.",

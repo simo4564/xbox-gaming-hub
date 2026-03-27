@@ -1,0 +1,10 @@
+version: '3.9'
+services:
+  gaming-community:
+    build: .
+    ports:
+      - "8000:8000"
+    env_file:
+      - backend/.env.example
+    volumes:
+      - ./backend/data:/app/backend/data

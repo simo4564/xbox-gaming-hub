@@ -1,111 +1,173 @@
-# Gaming Community Store
+# Gaming Community Store — Full-Stack Edition
 
-This repository contains a production-ready digital storefront for selling Xbox digital products such as Game Pass subscriptions, game keys and gift cards. The site uses vanilla HTML, TailwindCSS and JavaScript and integrates a WhatsApp-based checkout flow.
+This bundle upgrades the storefront into a fuller launch-ready structure:
 
-## Contents
+- premium storefront frontend (`index.html`, `offer.html`, legal pages)
+- secure-ish backend API with **FastAPI**
+- **SQLite database** for products, live deals, orders, contacts, newsletter subscribers, admin users, and audit logs
+- **admin dashboard** (`admin.html`)
+- market-watch tooling for **Xbox-Now** deal discovery and **Allkeyshop** comparison baselines
+- order persistence before redirecting to WhatsApp
 
-* **index.html** – The main website. All of the UI and store logic lives in this file. It dynamically fetches product data from `products.json` (if present) and falls back to a built‑in dataset when necessary. It includes featured deals, favorites, recently viewed items, newsletter, a promo countdown, and an expanded WhatsApp checkout flow with richer automated order text.
-* **pricing-source-map.json** – A configuration file that maps your internal product IDs to market source URLs (e.g. Allkeyshop) along with a margin percentage and fallback base price. This file is consumed by the update script.
-* **update-prices.js** – A Node.js script that reads the source map, attempts to scrape the latest market prices, applies the configured margin and writes `products.json`. If scraping fails, it falls back to the last known good price or the configured base price.
-* **products.json** – A generated data file containing the current product catalogue with calculated pricing. The front‑end loads this file automatically when present.
-* **offer-data.js** – Shared featured-offer data used by the homepage and dedicated offer page.
-* **offer.html** – A dedicated offer page template. Featured offers on the homepage link here and load the correct content via the `slug` query parameter.
-* **README.md** – This document.
+## What is included
 
-## Running Locally
+### Frontend
+- `index.html` — main storefront
+- `offer.html` — dedicated offer pages
+- `admin.html` — admin login and dashboard UI
+- `terms.html`, `privacy.html`, `refund.html` — working legal pages
+- `assets/` — local product visuals, including corrected gift card images
+- `products.json` — base storefront product catalog
+- `live-deals.json` — bundled market-watch feed
+- `offer-data.js` — featured offer content
 
-1. Install the dependencies (optional) if you plan to enable live scraping:
+### Backend
+- `backend/app.py` — FastAPI application
+- `backend/db.py` — SQLite schema + seeding helpers
+- `backend/security.py` — password hashing, JWT auth, security headers, simple rate limiting
+- `backend/requirements.txt` — Python dependencies
+- `backend/.env.example` — environment variable template
+- `backend/scripts/seed_database.py` — seeds the SQLite database
+- `backend/scripts/sync_market_sources.py` — refresh script for Xbox-Now and Allkeyshop feeds
+- `backend/data/gaming_community.db` — SQLite database created after seeding/running the backend
 
-```sh
-npm install axios cheerio
+### Ops / deployment
+- `Dockerfile`
+- `docker-compose.yml`
+- `.gitignore`
+- `package.json` — convenience scripts for running the backend and legacy update scripts
+
+## Database tables
+
+The SQLite database contains:
+- `products`
+- `live_deals`
+- `offers`
+- `orders`
+- `order_items`
+- `newsletter_subscribers`
+- `contact_messages`
+- `admin_users`
+- `audit_logs`
+
+## Security improvements included
+
+This version is stronger than the static-only build, but still not magically unbreakable.
+
+Included:
+- JWT-based admin login
+- password hashing with PBKDF2
+- basic rate limiting middleware
+- security headers middleware (CSP, X-Frame-Options, Referrer-Policy, etc.)
+- audit logging for important backend events
+- database-backed persistence for orders / subscribers / contacts
+
+Important reality check:
+- **frontend source code can never be fully hidden from visitors** because browsers must download it
+- sensitive logic is now moved to the backend where possible
+- for real production, keep the repository private and deploy the backend on your own server / VPS / platform
+
+## Run locally
+
+### Option 1 — Python directly
+
+```bash
+cd worksite_v13
+python -m uvicorn backend.app:app --reload --host 0.0.0.0 --port 8000
 ```
 
-2. Update product mappings in `pricing-source-map.json`. Each entry includes an ID, name, category, Allkeyshop source URL, margin percentage, fallback base price and product metadata.
+Open:
+- storefront: `http://localhost:8000/`
+- admin: `http://localhost:8000/admin`
 
-3. Run the updater to refresh `products.json`:
+### Option 2 — seed first, then start
 
-```sh
-node update-prices.js
+```bash
+python backend/scripts/seed_database.py
+python -m uvicorn backend.app:app --host 0.0.0.0 --port 8000
 ```
 
-By default the script uses the fallback base prices because network access is disabled. To enable real scraping in your own environment, uncomment the `axios`/`cheerio` lines and adjust the selector within `fetchLowestPriceFromSource()`.
+### Option 3 — Docker
 
-4. Open `index.html` in a browser. If `products.json` exists, the site will load up‑to‑date prices. Otherwise the fallback dataset baked into the JavaScript will display.
-
-## Customization
-
-Common changes can be performed directly inside **index.html**:
-
-| What                        | Where to edit                                             |
-|----------------------------|------------------------------------------------------------|
-| **Store name/logo**        | Find `Gaming<span class="text-brand">Community</span>` near the top of the file. Replace the text to change branding. |
-| **WhatsApp number**        | In the `<script>` section, update `STORE_CONFIG.whatsappNumber` with your WhatsApp number (digits only). |
-| **Theme colors**           | Edit the `tailwind.config` definition at the top of the file. Brand colours live under `colors.brand`. |
-| **Hero images/text**       | Within the `#home` section, replace image URLs and modify headings or paragraphs as needed. |
-| **Product list**           | Update `pricing-source-map.json` and re‑run `node update-prices.js`, or edit the `fallbackProducts` array in the JavaScript if you want static products. |
-| **Featured offers**        | Edit `offer-data.js` to change offer images, labels, text, or which product each offer page points to. |
-| **Margin or pricing logic** | Modify `marginPercent` values in `pricing-source-map.json` or adjust the calculations in `update-prices.js`. |
-
-## Deployment
-
-To deploy as a static site (e.g. via GitHub Pages, Netlify or Vercel):
-
-1. Ensure `products.json` is committed to the repository alongside `index.html`.
-2. Push the files to your hosting provider. No build step is required.
-3. Optionally set up a scheduled job on a server to run `node update-prices.js` periodically and commit/publish the updated `products.json` back to the repository for live pricing.
-
-## Last Updated Indicator
-
-The site displays a “Last updated” timestamp in the Digital Store section. It uses the latest `lastUpdated` value from `products.json`. If the file is not present, it indicates that fallback prices are in use.
-
-
-## New Useful Features
-
-- **Compare products**: buyers can compare up to 3 products side by side before deciding.
-- **Activation & Region Guide**: helps customers understand compatibility and what happens after payment.
-- **Featured offer pages**: image-led deals open on dedicated pages with next-step guidance.
-
-
-## Backend Included
-
-This version also includes a simple **Express backend** so the project is no longer frontend-only:
-
-- `server.js` — serves the storefront and exposes API endpoints
-- `GET /api/health` — backend health check
-- `GET /api/products` — product feed
-- `GET /api/offers` — offer feed
-- `POST /api/order-preview` — order preview payload for future checkout workflows
-- `POST /api/newsletter` — newsletter signup endpoint
-
-To run the full stack locally:
-
-```sh
-npm install
-npm start
+```bash
+docker compose up --build
 ```
 
-Then open `http://localhost:3000`.
+## Default admin credentials
 
+These are controlled by environment variables.
 
-## Extra Pages
+See `backend/.env.example`:
+- `ADMIN_EMAIL`
+- `ADMIN_PASSWORD`
+- `JWT_SECRET`
 
-This bundle now includes `terms.html`, `privacy.html`, and `refund.html` so the Legal links in the footer work correctly.
-It also includes local gift card images inside `assets/` so the gift card products use accurate artwork instead of unrelated external images.
+Change them before real deployment.
 
+## API overview
 
-## Live deal feed
+### Public
+- `GET /api/health`
+- `GET /api/products`
+- `GET /api/products/{id}`
+- `GET /api/live-deals`
+- `GET /api/offers`
+- `POST /api/newsletter`
+- `POST /api/contact`
+- `POST /api/bundle-preview`
+- `POST /api/order-preview`
+- `POST /api/orders`
 
-- `live-deals.json` stores the market-watch cards shown in the **Latest Deal Radar** section.
-- `update-live-deals.js` is the refresh script for that feed. It is designed to use **Xbox-Now** for discovery and **Allkeyshop** for cheapest pricing baselines.
-- Pricing rule: `storePrice = marketPrice * 1.20`.
-- If you update the feed manually, keep the `updatedAt` field current so the frontend shows the correct timestamp.
+### Admin
+- `POST /api/auth/login`
+- `GET /api/admin/stats`
+- `GET /api/admin/orders`
+- `GET /api/admin/newsletter`
+- `GET /api/admin/contacts`
 
+## Market-watch workflow
 
-## Latest Upgrade Notes
+### Xbox-Now
+Use Xbox-Now to discover fresh Xbox Store deals and sales to feature in the catalog.
 
-This version adds:
+### Allkeyshop
+Use Allkeyshop comparison pages to determine the **cheapest visible market baseline**, then apply your rule:
 
-- **Shop by Goal** quick presets that jump the catalog into buyer-friendly paths.
-- **Bundle Builder** for combining a subscription, a game, and an optional gift card into one WhatsApp-ready order.
-- **FAQ search** so visitors can filter support questions instantly.
-- **Backend bundle preview** via `/api/bundle-preview` for cleaner pack summaries.
+```text
+store price = cheapest market price * 1.20
+```
+
+The refresh script for this is:
+
+```bash
+python backend/scripts/sync_market_sources.py
+```
+
+## Frontend/backend flow now
+
+- frontend displays products and offer pages
+- contact form posts to the backend
+- WhatsApp checkout also stores an internal order record first
+- admin dashboard can review orders, newsletter signups, and contact messages
+- product data and live deals are backed by SQLite after startup
+
+## Still recommended before serious public launch
+
+To go beyond MVP and into stronger production readiness, add:
+- reverse proxy (Nginx / Caddy)
+- HTTPS certificates
+- proper secret management
+- backup strategy for the SQLite DB or migration to PostgreSQL
+- scheduled sync jobs for pricing/deals
+- more granular admin roles
+- bot protection / WAF (Cloudflare)
+- monitoring and error tracking
+
+## Useful file customization points
+
+- storefront branding: `index.html`
+- featured offers: `offer-data.js`
+- fallback catalog: `products.json`
+- market source mapping: `pricing-source-map.json`
+- backend auth / limits: `backend/security.py`
+- DB schema: `backend/db.py`
