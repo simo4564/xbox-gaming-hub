@@ -12,8 +12,8 @@
     "badge": "Best Seller",
     "description": "Play hundreds of high-quality games on console, PC, and cloud. Includes EA Play.",
     "inStock": true,
-    "lastUpdated": "2026-03-27T08:03:27.386Z",
-    "priceStatus": "fallback"
+    "lastUpdated": "2026-03-27T08:23:31.247Z",
+    "priceStatus": "previous"
   },
   {
     "id": "gpu-3m",
@@ -28,8 +28,8 @@
     "badge": "Hot Deal",
     "description": "3 months of Ultimate access. Play day one releases and enjoy multiplayer.",
     "inStock": true,
-    "lastUpdated": "2026-03-27T08:03:27.386Z",
-    "priceStatus": "fallback"
+    "lastUpdated": "2026-03-27T08:23:31.247Z",
+    "priceStatus": "previous"
   },
   {
     "id": "gpc-12m",
@@ -44,8 +44,8 @@
     "badge": "",
     "description": "Formerly Xbox Live Gold. Online console multiplayer and catalog of 25+ games.",
     "inStock": true,
-    "lastUpdated": "2026-03-27T08:03:27.386Z",
-    "priceStatus": "fallback"
+    "lastUpdated": "2026-03-27T08:23:31.247Z",
+    "priceStatus": "previous"
   },
   {
     "id": "gift-10",
@@ -60,8 +60,8 @@
     "badge": "",
     "description": "Add funds to your Microsoft account. Buy games, add-ons, and more.",
     "inStock": true,
-    "lastUpdated": "2026-03-27T08:03:27.386Z",
-    "priceStatus": "fallback"
+    "lastUpdated": "2026-03-27T08:23:31.247Z",
+    "priceStatus": "previous"
   },
   {
     "id": "gift-20",
@@ -76,8 +76,8 @@
     "badge": "",
     "description": "Add funds to your Microsoft account. Buy games, add-ons, and more.",
     "inStock": true,
-    "lastUpdated": "2026-03-27T08:03:27.386Z",
-    "priceStatus": "fallback"
+    "lastUpdated": "2026-03-27T08:23:31.247Z",
+    "priceStatus": "previous"
   },
   {
     "id": "gift-50",
@@ -92,8 +92,8 @@
     "badge": "Save 7%",
     "description": "Perfect for buying full-priced games or expanding your library.",
     "inStock": true,
-    "lastUpdated": "2026-03-27T08:03:27.386Z",
-    "priceStatus": "fallback"
+    "lastUpdated": "2026-03-27T08:23:31.247Z",
+    "priceStatus": "previous"
   },
   {
     "id": "game-fc25",
@@ -108,8 +108,8 @@
     "badge": "New",
     "description": "Experience the most true-to-life football experience ever.",
     "inStock": true,
-    "lastUpdated": "2026-03-27T08:03:27.386Z",
-    "priceStatus": "fallback"
+    "lastUpdated": "2026-03-27T08:23:31.247Z",
+    "priceStatus": "previous"
   },
   {
     "id": "game-cod6",
@@ -124,8 +124,8 @@
     "badge": "Trending",
     "description": "The signature Black Ops series returns with an epic campaign and multiplayer.",
     "inStock": true,
-    "lastUpdated": "2026-03-27T08:03:27.387Z",
-    "priceStatus": "fallback"
+    "lastUpdated": "2026-03-27T08:23:31.247Z",
+    "priceStatus": "previous"
   },
   {
     "id": "game-fh5",
@@ -140,8 +140,8 @@
     "badge": "",
     "description": "Explore the vibrant and ever-evolving open world landscapes of Mexico.",
     "inStock": true,
-    "lastUpdated": "2026-03-27T08:03:27.387Z",
-    "priceStatus": "fallback"
+    "lastUpdated": "2026-03-27T08:23:31.248Z",
+    "priceStatus": "previous"
   },
   {
     "id": "game-gta5",
@@ -156,8 +156,8 @@
     "badge": "Must Have",
     "description": "Includes GTA V Story Mode and Grand Theft Auto Online.",
     "inStock": true,
-    "lastUpdated": "2026-03-27T08:03:27.387Z",
-    "priceStatus": "fallback"
+    "lastUpdated": "2026-03-27T08:23:31.248Z",
+    "priceStatus": "previous"
   },
   {
     "id": "game-mc",
@@ -172,8 +172,8 @@
     "badge": "",
     "description": "Explore randomly generated worlds and build amazing things.",
     "inStock": true,
-    "lastUpdated": "2026-03-27T08:03:27.387Z",
-    "priceStatus": "fallback"
+    "lastUpdated": "2026-03-27T08:23:31.248Z",
+    "priceStatus": "previous"
   },
   {
     "id": "game-cyber",
@@ -188,7 +188,7 @@
     "badge": "",
     "description": "An open-world, action-adventure RPG set in the dark future of Night City.",
     "inStock": true,
-    "lastUpdated": "2026-03-27T08:03:27.387Z",
-    "priceStatus": "fallback"
+    "lastUpdated": "2026-03-27T08:23:31.248Z",
+    "priceStatus": "previous"
   }
 ]

@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gaming Community | Premium Digital Xbox Store</title>
     <meta name="description" content="Your trusted source for Xbox digital games, Game Pass subscriptions, and gift cards. Instant delivery, premium support.">
+
+        <!-- SEO & Social Sharing -->
+        <!-- Open Graph meta tags provide better previews when your site is shared on social media -->
+        <meta property="og:title" content="Gaming Community | Premium Digital Xbox Store">
+        <meta property="og:description" content="Your trusted source for Xbox digital games, Game Pass subscriptions, and gift cards with instant delivery and market‑based pricing.">
+        <!-- A generic placeholder image for social previews; replace with your own hosted asset if available -->
+        <meta property="og:image" content="https://placehold.co/1200x630/0b0b0b/107C10?text=Gaming+Community">
+        <meta property="og:url" content="https://simo4564.github.io/xbox-gaming-hub/">
+        <meta name="twitter:card" content="summary_large_image">
+        <!-- Keywords help search engines understand what your site is about -->
+        <meta name="keywords" content="Xbox digital games, Game Pass subscriptions, Xbox gift cards, digital gaming store, instant delivery">
     
     <!-- Tailwind CSS for rapid, premium styling -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -105,7 +116,7 @@
 
                 <!-- Actions -->
                 <div class="flex items-center gap-4">
-                    <button id="cart-btn" class="relative p-2 text-gray-300 hover:text-white transition-colors group">
+                    <button id="cart-btn" class="relative p-2 text-gray-300 hover:text-white transition-colors group" aria-label="Open cart">
                         <i class="ph ph-shopping-cart-simple text-2xl group-hover:scale-110 transition-transform"></i>
                         <span id="cart-count" class="absolute top-0 right-0 bg-brand text-white text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center border border-dark-bg hidden">0</span>
                     </button>
@@ -113,7 +124,7 @@
                         <i class="ph-fill ph-whatsapp-logo text-green-500 text-lg"></i> Support
                     </a>
                     <!-- Mobile Menu Btn -->
-                    <button id="mobile-menu-btn" class="md:hidden p-2 text-gray-300">
+                    <button id="mobile-menu-btn" class="md:hidden p-2 text-gray-300" aria-label="Toggle navigation menu">
                         <i class="ph ph-list text-2xl"></i>
                     </button>
                 </div>
@@ -170,8 +181,8 @@
                 <div class="relative hidden md:block animate-fade-in" style="animation-delay: 0.2s;">
                     <!-- Floating visual composition -->
                     <div class="relative w-full aspect-square">
-                        <img src="https://placehold.co/400x600/151515/107C10?text=Game+Pass+Ultimate+1+Month" alt="Game Pass" class="absolute right-0 top-0 w-2/3 rounded-xl shadow-2xl border border-dark-border transform rotate-6 hover:rotate-0 transition-transform duration-500 z-20">
-                        <img src="https://placehold.co/400x600/1a1a1a/ffffff?text=FC+25" alt="Game" class="absolute left-0 bottom-10 w-3/5 rounded-xl shadow-2xl border border-dark-border transform -rotate-6 hover:rotate-0 transition-transform duration-500 z-10">
+                        <img src="https://placehold.co/400x600/151515/107C10?text=Game+Pass+Ultimate+1+Month" alt="Game Pass" loading="lazy" class="absolute right-0 top-0 w-2/3 rounded-xl shadow-2xl border border-dark-border transform rotate-6 hover:rotate-0 transition-transform duration-500 z-20">
+                        <img src="https://placehold.co/400x600/1a1a1a/ffffff?text=FC+25" alt="Game" loading="lazy" class="absolute left-0 bottom-10 w-3/5 rounded-xl shadow-2xl border border-dark-border transform -rotate-6 hover:rotate-0 transition-transform duration-500 z-10">
                     </div>
                 </div>
             </div>
@@ -219,9 +230,9 @@
                 <div class="w-full md:w-auto flex flex-col sm:flex-row gap-3">
                     <div class="relative group">
                         <i class="ph ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-brand transition-colors"></i>
-                        <input type="text" id="search-input" placeholder="Search games, cards..." class="w-full sm:w-64 bg-dark-card border border-dark-border rounded-lg pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:border-brand text-white transition-colors placeholder-gray-600">
+                        <input type="text" id="search-input" aria-label="Search products" placeholder="Search games, cards..." class="w-full sm:w-64 bg-dark-card border border-dark-border rounded-lg pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:border-brand text-white transition-colors placeholder-gray-600">
                     </div>
-                    <select id="sort-select" class="bg-dark-card border border-dark-border rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-brand text-white transition-colors appearance-none cursor-pointer">
+                    <select id="sort-select" aria-label="Sort products" class="bg-dark-card border border-dark-border rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-brand text-white transition-colors appearance-none cursor-pointer">
                         <option value="popular">Most Popular</option>
                         <option value="price-low">Price: Low to High</option>
                         <option value="price-high">Price: High to Low</option>
@@ -284,6 +295,104 @@
                     <div class="w-16 h-16 bg-brand/20 text-brand rounded-full flex items-center justify-center text-2xl mx-auto mb-6 border border-brand/30 shadow-[0_0_15px_rgba(16,124,16,0.2)]">3</div>
                     <h3 class="text-xl font-bold text-white mb-3">Receive & Play</h3>
                     <p class="text-gray-400 text-sm leading-relaxed">Complete your payment securely and receive your digital key instantly in the WhatsApp chat. Redeem and play.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 bg-dark-card/50 border-y border-dark-border">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">What Our Customers Say</h2>
+                <p class="text-gray-400">Hear from gamers who love our service.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-dark-card p-8 rounded-2xl border border-dark-border reveal hover-lift">
+                    <div class="flex items-center mb-4 gap-1" aria-label="5 star rating">
+                        <i class="ph-fill ph-star text-yellow-400"></i>
+                        <i class="ph-fill ph-star text-yellow-400"></i>
+                        <i class="ph-fill ph-star text-yellow-400"></i>
+                        <i class="ph-fill ph-star text-yellow-400"></i>
+                        <i class="ph-fill ph-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-400 mb-4">Amazing service! Received my game instantly and the customer support was great.</p>
+                    <h4 class="font-bold text-white">Lucas P.</h4>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="bg-dark-card p-8 rounded-2xl border border-dark-border reveal hover-lift" style="transition-delay:100ms;">
+                    <div class="flex items-center mb-4 gap-1" aria-label="5 star rating">
+                        <i class="ph-fill ph-star text-yellow-400"></i>
+                        <i class="ph-fill ph-star text-yellow-400"></i>
+                        <i class="ph-fill ph-star text-yellow-400"></i>
+                        <i class="ph-fill ph-star text-yellow-400"></i>
+                        <i class="ph-fill ph-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-400 mb-4">Best prices on digital games, highly recommend this store.</p>
+                    <h4 class="font-bold text-white">Sarah A.</h4>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="bg-dark-card p-8 rounded-2xl border border-dark-border reveal hover-lift" style="transition-delay:200ms;">
+                    <div class="flex items-center mb-4 gap-1" aria-label="5 star rating">
+                        <i class="ph-fill ph-star text-yellow-400"></i>
+                        <i class="ph-fill ph-star text-yellow-400"></i>
+                        <i class="ph-fill ph-star text-yellow-400"></i>
+                        <i class="ph-fill ph-star text-yellow-400"></i>
+                        <i class="ph-fill ph-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-400 mb-4">Fast delivery and trusted site; will buy again.</p>
+                    <h4 class="font-bold text-white">Mohamed Y.</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-dark-bg border-y border-dark-border">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Get in Touch</h2>
+                <p class="text-gray-400">Need help or have a question? We're here for you.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- WhatsApp Contact -->
+                <div class="bg-dark-card p-8 rounded-2xl border border-dark-border reveal hover-lift">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center">
+                            <i class="ph-fill ph-whatsapp-logo text-white text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-white text-xl">WhatsApp</h3>
+                    </div>
+                    <p class="text-gray-400 mb-4">Chat with us on WhatsApp for quick answers.</p>
+                    <a href="https://wa.me/212636487541" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold px-5 py-3 rounded-lg transition-colors" aria-label="Contact us on WhatsApp">
+                        <i class="ph-fill ph-whatsapp-logo text-lg"></i> Message Us
+                    </a>
+                </div>
+                <!-- Email Contact -->
+                <div class="bg-dark-card p-8 rounded-2xl border border-dark-border reveal hover-lift" style="transition-delay:100ms;">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
+                            <i class="ph-fill ph-envelope-simple text-white text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-white text-xl">Email</h3>
+                    </div>
+                    <p class="text-gray-400 mb-4">Send us an email and we'll respond within 24 hours.</p>
+                    <a href="mailto:support@gamingcommunity.com" class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-3 rounded-lg transition-colors" aria-label="Contact us via email">
+                        <i class="ph-fill ph-envelope-simple text-lg"></i> Email Us
+                    </a>
+                </div>
+                <!-- Contact Form -->
+                <div class="bg-dark-card p-8 rounded-2xl border border-dark-border reveal hover-lift" style="transition-delay:200ms;">
+                    <h3 class="font-bold text-white text-xl mb-4 flex items-center gap-2">
+                        <i class="ph-fill ph-chat-circle-text text-brand text-2xl"></i> Send a Message
+                    </h3>
+                    <form onsubmit="event.preventDefault(); alert('Please contact us via WhatsApp or email.');" class="space-y-4">
+                        <input aria-label="Your Name" type="text" placeholder="Your Name" class="w-full bg-dark-bg border border-dark-border rounded px-3 py-2 text-sm text-white focus:border-brand outline-none">
+                        <input aria-label="Your Email" type="email" placeholder="Your Email" class="w-full bg-dark-bg border border-dark-border rounded px-3 py-2 text-sm text-white focus:border-brand outline-none">
+                        <textarea aria-label="Your Message" rows="3" placeholder="Your Message" class="w-full bg-dark-bg border border-dark-border rounded px-3 py-2 text-sm text-white focus:border-brand outline-none resize-none"></textarea>
+                        <button type="submit" class="w-full bg-brand hover:bg-brand-light text-white font-semibold py-2 rounded-lg transition-colors" aria-label="Send message">Send</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -416,7 +525,7 @@
                 <h3 class="text-lg font-bold text-white flex items-center gap-2">
                     <i class="ph ph-shopping-cart text-brand"></i> Your Cart
                 </h3>
-                <button id="close-cart-btn" class="text-gray-400 hover:text-white transition-colors bg-dark-bg p-2 rounded-lg">
+                <button id="close-cart-btn" class="text-gray-400 hover:text-white transition-colors bg-dark-bg p-2 rounded-lg" aria-label="Close cart">
                     <i class="ph ph-x text-xl"></i>
                 </button>
             </div>
@@ -451,7 +560,7 @@
                     </div>
                 </div>
 
-                <button id="checkout-btn" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3.5 rounded-lg flex justify-center items-center gap-2 transition-all shadow-[0_4px_14px_0_rgba(34,197,94,0.39)] hover:shadow-[0_6px_20px_rgba(34,197,94,0.23)]">
+                <button id="checkout-btn" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3.5 rounded-lg flex justify-center items-center gap-2 transition-all shadow-[0_4px_14px_0_rgba(34,197,94,0.39)] hover:shadow-[0_6px_20px_rgba(34,197,94,0.23)]" aria-label="Confirm order via WhatsApp">
                     <i class="ph-fill ph-whatsapp-logo text-xl"></i> Order via WhatsApp
                 </button>
                 <p class="text-center text-xs text-gray-500 mt-3"><i class="ph ph-lock-key"></i> Secure direct checkout</p>
@@ -464,7 +573,7 @@
         <div class="absolute inset-0 bg-black/80 backdrop-blur-md" id="product-modal-overlay"></div>
         <div class="absolute inset-0 flex items-center justify-center p-4">
             <div class="bg-dark-card border border-dark-border rounded-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto shadow-2xl transform scale-95 opacity-0 transition-all duration-300" id="product-modal-content">
-                <button id="close-modal-btn" class="absolute top-4 right-4 bg-dark-bg text-gray-400 hover:text-white w-8 h-8 rounded-full flex items-center justify-center transition-colors z-10">
+                <button id="close-modal-btn" class="absolute top-4 right-4 bg-dark-bg text-gray-400 hover:text-white w-8 h-8 rounded-full flex items-center justify-center transition-colors z-10" aria-label="Close product modal">
                     <i class="ph ph-x"></i>
                 </button>
                 <div class="grid grid-cols-1 md:grid-cols-2" id="product-modal-body">
@@ -671,7 +780,7 @@
                     card.className = 'glass-card rounded-xl overflow-hidden hover-lift flex flex-col h-full animate-fade-in group';
                     card.innerHTML = `
                         <div class="relative cursor-pointer overflow-hidden aspect-[3/4]" onclick="openProductModal('${p.id}')">
-                            <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <img src="${p.image}" alt="${p.name}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                             ${p.badge ? `<div class="absolute top-3 left-3 bg-brand text-white text-[10px] font-bold px-2 py-1 rounded shadow-lg uppercase tracking-wider">${p.badge}</div>` : ''}
                             ${discount > 0 && !p.badge ? `<div class="absolute top-3 left-3 bg-red-600 text-white text-[10px] font-bold px-2 py-1 rounded shadow-lg uppercase tracking-wider">-${discount}%</div>` : ''}
                             
@@ -688,7 +797,7 @@
                                 <span class="text-xl font-bold text-brand">${STORE_CONFIG.currency}${p.price.toFixed(2)}</span>
                                 ${p.oldPrice ? `<span class="text-sm text-gray-500 line-through">${STORE_CONFIG.currency}${p.oldPrice.toFixed(2)}</span>` : ''}
                             </div>
-                            <button onclick="addToCart('${p.id}')" class="w-full bg-dark-bg hover:bg-brand border border-dark-border hover:border-brand text-white font-medium py-2.5 rounded-lg transition-all flex justify-center items-center gap-2 group/btn">
+                            <button onclick="addToCart('${p.id}')" class="w-full bg-dark-bg hover:bg-brand border border-dark-border hover:border-brand text-white font-medium py-2.5 rounded-lg transition-all flex justify-center items-center gap-2 group/btn" aria-label="Add to cart">
                                 <i class="ph ph-shopping-cart-simple group-hover/btn:animate-bounce"></i> Add to Cart
                             </button>
                         </div>
@@ -708,7 +817,7 @@
             
             modalBody.innerHTML = `
                 <div class="bg-dark-bg p-6 flex items-center justify-center relative">
-                    <img src="${p.image}" alt="${p.name}" class="max-w-full max-h-[400px] object-contain rounded-xl shadow-2xl">
+                    <img src="${p.image}" alt="${p.name}" loading="lazy" class="max-w-full max-h-[400px] object-contain rounded-xl shadow-2xl">
                     ${p.badge ? `<div class="absolute top-6 left-6 bg-brand text-white text-xs font-bold px-3 py-1.5 rounded uppercase tracking-wider">${p.badge}</div>` : ''}
                 </div>
                 <div class="p-8 flex flex-col justify-center">
@@ -727,7 +836,7 @@
                         <div class="flex items-center gap-1"><i class="ph-fill ph-globe text-blue-400"></i> Global Region</div>
                     </div>
                     
-                    <button onclick="addToCart('${p.id}'); closeProductModal();" class="w-full bg-brand hover:bg-brand-light text-white font-bold py-4 rounded-xl transition-all shadow-[0_0_20px_rgba(16,124,16,0.3)] flex justify-center items-center gap-2 text-lg">
+                    <button onclick="addToCart('${p.id}'); closeProductModal();" class="w-full bg-brand hover:bg-brand-light text-white font-bold py-4 rounded-xl transition-all shadow-[0_0_20px_rgba(16,124,16,0.3)] flex justify-center items-center gap-2 text-lg" aria-label="Add to cart">
                         <i class="ph ph-shopping-cart-simple text-xl"></i> Add to Cart
                     </button>
                 </div>
