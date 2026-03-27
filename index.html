@@ -116,6 +116,10 @@
 
                 <!-- Actions -->
                 <div class="flex items-center gap-4">
+                    <button id="favorites-btn" class="relative p-2 text-gray-300 hover:text-white transition-colors group" aria-label="View favorites">
+                        <i class="ph ph-heart text-2xl group-hover:scale-110 transition-transform"></i>
+                        <span id="favorites-count" class="absolute top-0 right-0 bg-brand text-white text-[10px] font-bold h-4 min-w-4 px-1 rounded-full flex items-center justify-center border border-dark-bg hidden">0</span>
+                    </button>
                     <button id="cart-btn" class="relative p-2 text-gray-300 hover:text-white transition-colors group" aria-label="Open cart">
                         <i class="ph ph-shopping-cart-simple text-2xl group-hover:scale-110 transition-transform"></i>
                         <span id="cart-count" class="absolute top-0 right-0 bg-brand text-white text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center border border-dark-bg hidden">0</span>
@@ -217,6 +221,23 @@
         </div>
     </section>
 
+    <!-- Featured Deals Section -->
+    <section id="featured-deals" class="py-16 bg-dark-bg border-b border-dark-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10 reveal">
+                <div>
+                    <p class="text-brand text-sm font-semibold uppercase tracking-[0.2em] mb-2">Editor’s picks</p>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-3">Featured Deals</h2>
+                    <p class="text-gray-400 max-w-2xl">Hand-picked offers with the strongest savings right now. Great for first-time buyers and returning Xbox players.</p>
+                </div>
+                <a href="#store" class="inline-flex items-center gap-2 text-brand hover:text-green-300 font-medium transition-colors">
+                    Browse full catalog <i class="ph ph-arrow-right"></i>
+                </a>
+            </div>
+            <div id="featured-deals-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+        </div>
+    </section>
+
     <!-- Main Store Section -->
     <section id="store" class="py-20 bg-dark-bg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -231,7 +252,6 @@
                     <div class="relative group">
                         <i class="ph ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-brand transition-colors"></i>
                         <input type="text" id="search-input" aria-label="Search products" placeholder="Search games, cards..." class="w-full sm:w-64 bg-dark-card border border-dark-border rounded-lg pl-10 pr-10 py-2.5 text-sm focus:outline-none focus:border-brand text-white transition-colors placeholder-gray-600">
-                        <!-- Clear search button appears when there is text -->
                         <button id="clear-search-btn" type="button" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white hidden" aria-label="Clear search">
                             <i class="ph ph-x"></i>
                         </button>
@@ -251,6 +271,7 @@
                 <button class="cat-btn whitespace-nowrap px-5 py-2 rounded-full border border-dark-border bg-dark-card text-gray-400 hover:text-white hover:border-gray-500 font-medium text-sm transition-all" data-cat="subscriptions">Subscriptions</button>
                 <button class="cat-btn whitespace-nowrap px-5 py-2 rounded-full border border-dark-border bg-dark-card text-gray-400 hover:text-white hover:border-gray-500 font-medium text-sm transition-all" data-cat="games">Games</button>
                 <button class="cat-btn whitespace-nowrap px-5 py-2 rounded-full border border-dark-border bg-dark-card text-gray-400 hover:text-white hover:border-gray-500 font-medium text-sm transition-all" data-cat="giftcards">Gift Cards</button>
+                <button class="cat-btn whitespace-nowrap px-5 py-2 rounded-full border border-dark-border bg-dark-card text-gray-400 hover:text-white hover:border-gray-500 font-medium text-sm transition-all" data-cat="favorites">Favorites</button>
             </div>
 
             <!-- Product Grid -->
@@ -266,8 +287,22 @@
                 <i class="ph ph-ghost text-6xl text-gray-600 mb-4 inline-block"></i>
                 <h3 class="text-xl font-bold text-white mb-2">No products found</h3>
                 <p class="text-gray-500">Try adjusting your search or category filter.</p>
-                <button onclick="document.getElementById('search-input').value=''; searchQuery=''; renderProducts(); document.getElementById('clear-search-btn').classList.add('hidden');" class="mt-4 text-brand hover:underline">Clear filters</button>
+                <button onclick="document.getElementById('search-input').value=''; searchQuery=''; currentFilter='all'; setActiveCategoryButton('all'); document.getElementById('clear-search-btn')?.classList.add('hidden'); renderProducts();" class="mt-4 text-brand hover:underline">Clear filters</button>
             </div>
+        </div>
+    </section>
+
+    <!-- Recently Viewed Section -->
+    <section id="recently-viewed-section" class="py-16 bg-dark-card/30 border-y border-dark-border hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8 reveal">
+                <div>
+                    <p class="text-brand text-sm font-semibold uppercase tracking-[0.2em] mb-2">Keep exploring</p>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-3">Recently Viewed</h2>
+                    <p class="text-gray-400 max-w-2xl">Jump back into products you checked a moment ago without searching again.</p>
+                </div>
+            </div>
+            <div id="recently-viewed-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
         </div>
     </section>
 
@@ -399,18 +434,6 @@
                     </form>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Newsletter Section -->
-    <section id="newsletter" class="py-20 bg-dark-card/50 border-y border-dark-border">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Join Our Newsletter</h2>
-            <p class="text-gray-400 mb-6">Get the latest deals and updates sent right to your inbox.</p>
-            <form onsubmit="event.preventDefault(); alert('Thank you for subscribing!');" class="max-w-md mx-auto flex flex-col sm:flex-row gap-4">
-                <input aria-label="Your email" type="email" placeholder="Your email address" required class="flex-1 bg-dark-bg border border-dark-border rounded px-4 py-3 text-sm text-white focus:border-brand outline-none">
-                <button type="submit" class="bg-brand hover:bg-brand-light text-white font-bold px-6 py-3 rounded-lg transition-colors">Subscribe</button>
-            </form>
         </div>
     </section>
 
@@ -647,6 +670,8 @@
         // State
         let products = [];
         let cart = JSON.parse(localStorage.getItem('gc_cart')) || [];
+        let favorites = JSON.parse(localStorage.getItem('gc_favorites')) || [];
+        let recentlyViewed = JSON.parse(localStorage.getItem('gc_recent')) || [];
         let currentFilter = 'all';
         let currentSort = 'popular';
         let searchQuery = '';
@@ -654,7 +679,11 @@
         // DOM Elements
         const grid = document.getElementById('product-grid');
         const emptyState = document.getElementById('empty-state');
+        const featuredDealsGrid = document.getElementById('featured-deals-grid');
+        const recentlyViewedSection = document.getElementById('recently-viewed-section');
+        const recentlyViewedGrid = document.getElementById('recently-viewed-grid');
         const cartCount = document.getElementById('cart-count');
+        const favoritesCount = document.getElementById('favorites-count');
         const cartItemsContainer = document.getElementById('cart-items');
         const cartSubtotal = document.getElementById('cart-subtotal');
         const cartTotal = document.getElementById('cart-total');
@@ -668,8 +697,11 @@
             setYear();
             setupEventListeners();
             await loadProducts();
+            renderFeaturedDeals();
             renderProducts();
+            renderRecentlyViewed();
             updateCartUI();
+            updateFavoritesUI();
             initScrollAnimations();
             setLastUpdated();
         }
@@ -702,6 +734,12 @@
         function setupEventListeners() {
             // Cart Toggles
             document.getElementById('cart-btn').addEventListener('click', openCart);
+            document.getElementById('favorites-btn').addEventListener('click', () => {
+                currentFilter = 'favorites';
+                setActiveCategoryButton('favorites');
+                document.getElementById('store').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                renderProducts();
+            });
             document.getElementById('close-cart-btn').addEventListener('click', closeCart);
             document.getElementById('cart-overlay').addEventListener('click', closeCart);
             
@@ -718,13 +756,8 @@
             // Filters & Sort
             document.querySelectorAll('.cat-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
-                    document.querySelectorAll('.cat-btn').forEach(b => {
-                        b.classList.remove('bg-brand/20', 'border-brand', 'text-brand');
-                        b.classList.add('bg-dark-card', 'border-dark-border', 'text-gray-400');
-                    });
-                    e.target.classList.remove('bg-dark-card', 'border-dark-border', 'text-gray-400');
-                    e.target.classList.add('bg-brand/20', 'border-brand', 'text-brand');
                     currentFilter = e.target.dataset.cat;
+                    setActiveCategoryButton(currentFilter);
                     renderProducts();
                 });
             });
@@ -735,7 +768,6 @@
 
             searchInput.addEventListener('input', (e) => {
                 searchQuery = e.target.value.toLowerCase();
-                // Show or hide the clear search button based on input
                 if (e.target.value.length > 0) {
                     clearSearchBtn.classList.remove('hidden');
                 } else {
@@ -744,7 +776,6 @@
                 renderProducts();
             });
 
-            // Clear search input when clicking the clear button
             clearSearchBtn.addEventListener('click', () => {
                 searchInput.value = '';
                 searchQuery = '';
@@ -765,7 +796,6 @@
                 } else {
                     nav.classList.remove('shadow-lg');
                 }
-                // Back-to-top button visibility
                 if (window.scrollY > 300) {
                     backToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
                 } else {
@@ -773,7 +803,6 @@
                 }
             });
 
-            // Scroll to top when clicking the back-to-top button
             backToTopBtn.addEventListener('click', () => {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
@@ -804,10 +833,22 @@
             });
         }
 
+        function setActiveCategoryButton(category) {
+            document.querySelectorAll('.cat-btn').forEach(b => {
+                b.classList.remove('bg-brand/20', 'border-brand', 'text-brand');
+                b.classList.add('bg-dark-card', 'border-dark-border', 'text-gray-400');
+            });
+            const activeBtn = document.querySelector(`.cat-btn[data-cat="${category}"]`);
+            if (activeBtn) {
+                activeBtn.classList.remove('bg-dark-card', 'border-dark-border', 'text-gray-400');
+                activeBtn.classList.add('bg-brand/20', 'border-brand', 'text-brand');
+            }
+        }
+
         // Core Render Function
         function renderProducts() {
             let filtered = products.filter(p => {
-                const matchCat = currentFilter === 'all' || p.category === currentFilter;
+                const matchCat = currentFilter === 'all' || p.category === currentFilter || (currentFilter === 'favorites' && favorites.includes(p.id));
                 const matchSearch = p.name.toLowerCase().includes(searchQuery) || p.description.toLowerCase().includes(searchQuery);
                 return matchCat && matchSearch;
             });
@@ -826,6 +867,7 @@
                 emptyState.classList.add('hidden');
                 filtered.forEach(p => {
                     const discount = p.oldPrice ? Math.round(((p.oldPrice - p.price) / p.oldPrice) * 100) : 0;
+                    const isFavorite = favorites.includes(p.id);
                     const card = document.createElement('div');
                     card.className = 'glass-card rounded-xl overflow-hidden hover-lift flex flex-col h-full animate-fade-in group';
                     card.innerHTML = `
@@ -833,6 +875,9 @@
                             <img src="${p.image}" alt="${p.name}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                             ${p.badge ? `<div class="absolute top-3 left-3 bg-brand text-white text-[10px] font-bold px-2 py-1 rounded shadow-lg uppercase tracking-wider">${p.badge}</div>` : ''}
                             ${discount > 0 && !p.badge ? `<div class="absolute top-3 left-3 bg-red-600 text-white text-[10px] font-bold px-2 py-1 rounded shadow-lg uppercase tracking-wider">-${discount}%</div>` : ''}
+                            <button onclick="toggleFavorite(event, '${p.id}')" class="absolute top-3 right-3 w-10 h-10 rounded-full border ${isFavorite ? 'border-brand bg-brand/20 text-brand' : 'border-white/10 bg-black/40 text-white'} backdrop-blur-md flex items-center justify-center hover:scale-105 transition-all" aria-label="Save to favorites">
+                                <i class="ph ${isFavorite ? 'ph-fill' : ''} ph-heart text-lg"></i>
+                            </button>
                             
                             <!-- Hover Overlay -->
                             <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
@@ -843,7 +888,6 @@
                         </div>
                         <div class="p-5 flex flex-col flex-1">
                             <h3 class="font-bold text-white mb-1 line-clamp-2 leading-tight cursor-pointer hover:text-brand transition-colors" onclick="openProductModal('${p.id}')">${p.name}</h3>
-                            <!-- Static 5-star rating row for visual consistency -->
                             <div class="flex items-center gap-1 text-yellow-400 mb-2" aria-label="Rating">
                                 <i class="ph-fill ph-star"></i>
                                 <i class="ph-fill ph-star"></i>
@@ -869,19 +913,23 @@
         function openProductModal(id) {
             const p = products.find(x => x.id === id);
             if(!p) return;
+            addToRecentlyViewed(id);
             
             const modalBody = document.getElementById('product-modal-body');
             const discount = p.oldPrice ? Math.round(((p.oldPrice - p.price) / p.oldPrice) * 100) : 0;
+            const isFavorite = favorites.includes(p.id);
             
             modalBody.innerHTML = `
                 <div class="bg-dark-bg p-6 flex items-center justify-center relative">
                     <img src="${p.image}" alt="${p.name}" loading="lazy" class="max-w-full max-h-[400px] object-contain rounded-xl shadow-2xl">
                     ${p.badge ? `<div class="absolute top-6 left-6 bg-brand text-white text-xs font-bold px-3 py-1.5 rounded uppercase tracking-wider">${p.badge}</div>` : ''}
+                    <button onclick="toggleFavorite(event, '${p.id}'); openProductModal('${p.id}')" class="absolute top-6 right-6 w-10 h-10 rounded-full border ${isFavorite ? 'border-brand bg-brand/20 text-brand' : 'border-white/10 bg-black/40 text-white'} backdrop-blur-md flex items-center justify-center hover:scale-105 transition-all" aria-label="Save to favorites">
+                        <i class="ph ${isFavorite ? 'ph-fill' : ''} ph-heart text-lg"></i>
+                    </button>
                 </div>
                 <div class="p-8 flex flex-col justify-center">
                     <div class="text-xs text-brand font-bold uppercase tracking-widest mb-2">${p.category}</div>
                     <h2 class="text-2xl font-bold text-white mb-2 leading-tight">${p.name}</h2>
-                    <!-- Static 5-star rating row for visual consistency in modal -->
                     <div class="flex items-center gap-1 text-yellow-400 mb-4" aria-label="Rating">
                         <i class="ph-fill ph-star"></i>
                         <i class="ph-fill ph-star"></i>
@@ -931,6 +979,95 @@
             setTimeout(() => {
                 modal.classList.add('hidden');
             }, 300);
+        }
+
+        function toggleFavorite(event, id) {
+            if (event) event.stopPropagation();
+            if (favorites.includes(id)) {
+                favorites = favorites.filter(item => item !== id);
+            } else {
+                favorites.unshift(id);
+            }
+            localStorage.setItem('gc_favorites', JSON.stringify(favorites));
+            updateFavoritesUI();
+            renderProducts();
+            renderRecentlyViewed();
+        }
+
+        function updateFavoritesUI() {
+            if (favorites.length > 0) {
+                favoritesCount.textContent = favorites.length;
+                favoritesCount.classList.remove('hidden');
+            } else {
+                favoritesCount.classList.add('hidden');
+            }
+        }
+
+        function addToRecentlyViewed(id) {
+            recentlyViewed = [id, ...recentlyViewed.filter(item => item !== id)].slice(0, 4);
+            localStorage.setItem('gc_recent', JSON.stringify(recentlyViewed));
+            renderRecentlyViewed();
+        }
+
+        function renderFeaturedDeals() {
+            if (!featuredDealsGrid) return;
+            const featured = [...products]
+                .sort((a, b) => ((b.oldPrice || b.price) - b.price) - ((a.oldPrice || a.price) - a.price))
+                .slice(0, 3);
+            featuredDealsGrid.innerHTML = featured.map((p, index) => {
+                const savings = p.oldPrice ? Math.round(((p.oldPrice - p.price) / p.oldPrice) * 100) : 0;
+                return `
+                    <div class="glass-card rounded-2xl p-6 border border-dark-border hover-lift reveal" style="transition-delay:${index * 100}ms;">
+                        <div class="flex items-start justify-between gap-4 mb-8">
+                            <div>
+                                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand/10 border border-brand/30 text-brand text-xs font-semibold uppercase tracking-[0.18em]">Top deal</span>
+                                <h3 class="text-2xl font-bold text-white mt-4 leading-tight">${p.name}</h3>
+                            </div>
+                            <span class="text-xs font-bold px-3 py-2 rounded-full ${savings > 0 ? 'bg-red-600/20 text-red-300 border border-red-600/30' : 'bg-white/5 text-gray-300 border border-white/10'}">${savings > 0 ? `Save ${savings}%` : 'Hot now'}</span>
+                        </div>
+                        <p class="text-gray-400 mb-8 line-clamp-3">${p.description}</p>
+                        <div class="flex items-end gap-3 mb-6">
+                            <span class="text-3xl font-bold text-white">${STORE_CONFIG.currency}${p.price.toFixed(2)}</span>
+                            ${p.oldPrice ? `<span class="text-gray-500 line-through">${STORE_CONFIG.currency}${p.oldPrice.toFixed(2)}</span>` : ''}
+                        </div>
+                        <div class="flex gap-3">
+                            <button onclick="openProductModal('${p.id}')" class="flex-1 bg-brand hover:bg-brand-light text-white font-semibold py-3 rounded-xl transition-colors">View deal</button>
+                            <button onclick="addToCart('${p.id}')" class="px-4 py-3 rounded-xl border border-dark-border hover:border-brand text-white transition-colors" aria-label="Add to cart"><i class="ph ph-shopping-cart-simple"></i></button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderRecentlyViewed() {
+            if (!recentlyViewedSection || !recentlyViewedGrid) return;
+            const viewedProducts = recentlyViewed
+                .map(id => products.find(p => p.id === id))
+                .filter(Boolean);
+            if (viewedProducts.length === 0) {
+                recentlyViewedSection.classList.add('hidden');
+                recentlyViewedGrid.innerHTML = '';
+                return;
+            }
+            recentlyViewedSection.classList.remove('hidden');
+            recentlyViewedGrid.innerHTML = viewedProducts.map((p) => `
+                <div class="glass-card rounded-xl overflow-hidden border border-dark-border hover-lift flex flex-col h-full">
+                    <div class="relative cursor-pointer overflow-hidden aspect-[3/4]" onclick="openProductModal('${p.id}')">
+                        <img src="${p.image}" alt="${p.name}" loading="lazy" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-5 flex flex-col flex-1">
+                        <h3 class="font-bold text-white mb-2 line-clamp-2">${p.name}</h3>
+                        <div class="flex items-center gap-2 mb-4 mt-auto">
+                            <span class="text-xl font-bold text-brand">${STORE_CONFIG.currency}${p.price.toFixed(2)}</span>
+                            ${p.oldPrice ? `<span class="text-sm text-gray-500 line-through">${STORE_CONFIG.currency}${p.oldPrice.toFixed(2)}</span>` : ''}
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="openProductModal('${p.id}')" class="flex-1 bg-dark-bg hover:bg-brand border border-dark-border hover:border-brand text-white font-medium py-2.5 rounded-lg transition-all">Quick View</button>
+                            <button onclick="addToCart('${p.id}')" class="px-4 py-2.5 rounded-lg border border-dark-border hover:border-brand text-white transition-all" aria-label="Add to cart"><i class="ph ph-shopping-cart-simple"></i></button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
         }
 
         // Cart Logic
