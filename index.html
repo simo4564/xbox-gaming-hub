@@ -230,7 +230,11 @@
                 <div class="w-full md:w-auto flex flex-col sm:flex-row gap-3">
                     <div class="relative group">
                         <i class="ph ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-brand transition-colors"></i>
-                        <input type="text" id="search-input" aria-label="Search products" placeholder="Search games, cards..." class="w-full sm:w-64 bg-dark-card border border-dark-border rounded-lg pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:border-brand text-white transition-colors placeholder-gray-600">
+                        <input type="text" id="search-input" aria-label="Search products" placeholder="Search games, cards..." class="w-full sm:w-64 bg-dark-card border border-dark-border rounded-lg pl-10 pr-10 py-2.5 text-sm focus:outline-none focus:border-brand text-white transition-colors placeholder-gray-600">
+                        <!-- Clear search button appears when there is text -->
+                        <button id="clear-search-btn" type="button" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white hidden" aria-label="Clear search">
+                            <i class="ph ph-x"></i>
+                        </button>
                     </div>
                     <select id="sort-select" aria-label="Sort products" class="bg-dark-card border border-dark-border rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-brand text-white transition-colors appearance-none cursor-pointer">
                         <option value="popular">Most Popular</option>
@@ -262,7 +266,7 @@
                 <i class="ph ph-ghost text-6xl text-gray-600 mb-4 inline-block"></i>
                 <h3 class="text-xl font-bold text-white mb-2">No products found</h3>
                 <p class="text-gray-500">Try adjusting your search or category filter.</p>
-                <button onclick="document.getElementById('search-input').value=''; filterProducts();" class="mt-4 text-brand hover:underline">Clear filters</button>
+                <button onclick="document.getElementById('search-input').value=''; searchQuery=''; renderProducts(); document.getElementById('clear-search-btn').classList.add('hidden');" class="mt-4 text-brand hover:underline">Clear filters</button>
             </div>
         </div>
     </section>
@@ -395,6 +399,18 @@
                     </form>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section id="newsletter" class="py-20 bg-dark-card/50 border-y border-dark-border">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Join Our Newsletter</h2>
+            <p class="text-gray-400 mb-6">Get the latest deals and updates sent right to your inbox.</p>
+            <form onsubmit="event.preventDefault(); alert('Thank you for subscribing!');" class="max-w-md mx-auto flex flex-col sm:flex-row gap-4">
+                <input aria-label="Your email" type="email" placeholder="Your email address" required class="flex-1 bg-dark-bg border border-dark-border rounded px-4 py-3 text-sm text-white focus:border-brand outline-none">
+                <button type="submit" class="bg-brand hover:bg-brand-light text-white font-bold px-6 py-3 rounded-lg transition-colors">Subscribe</button>
+            </form>
         </div>
     </section>
 
@@ -594,6 +610,11 @@
         </div>
     </div>
 
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 z-40 bg-brand hover:bg-brand-light text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 pointer-events-none transition-opacity duration-300" aria-label="Back to top">
+        <i class="ph-fill ph-arrow-up"></i>
+    </button>
+
 
     <!-- ========================================== -->
     <!-- APPLICATION LOGIC (JS) -->
@@ -708,8 +729,26 @@
                 });
             });
 
-            document.getElementById('search-input').addEventListener('input', (e) => {
+            const searchInput = document.getElementById('search-input');
+            const clearSearchBtn = document.getElementById('clear-search-btn');
+            const backToTopBtn = document.getElementById('back-to-top');
+
+            searchInput.addEventListener('input', (e) => {
                 searchQuery = e.target.value.toLowerCase();
+                // Show or hide the clear search button based on input
+                if (e.target.value.length > 0) {
+                    clearSearchBtn.classList.remove('hidden');
+                } else {
+                    clearSearchBtn.classList.add('hidden');
+                }
+                renderProducts();
+            });
+
+            // Clear search input when clicking the clear button
+            clearSearchBtn.addEventListener('click', () => {
+                searchInput.value = '';
+                searchQuery = '';
+                clearSearchBtn.classList.add('hidden');
                 renderProducts();
             });
 
@@ -726,6 +765,17 @@
                 } else {
                     nav.classList.remove('shadow-lg');
                 }
+                // Back-to-top button visibility
+                if (window.scrollY > 300) {
+                    backToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+                } else {
+                    backToTopBtn.classList.add('opacity-0', 'pointer-events-none');
+                }
+            });
+
+            // Scroll to top when clicking the back-to-top button
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
 
             // FAQ Accordion
@@ -793,6 +843,14 @@
                         </div>
                         <div class="p-5 flex flex-col flex-1">
                             <h3 class="font-bold text-white mb-1 line-clamp-2 leading-tight cursor-pointer hover:text-brand transition-colors" onclick="openProductModal('${p.id}')">${p.name}</h3>
+                            <!-- Static 5-star rating row for visual consistency -->
+                            <div class="flex items-center gap-1 text-yellow-400 mb-2" aria-label="Rating">
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                            </div>
                             <div class="flex items-center gap-2 mb-4 mt-auto pt-4">
                                 <span class="text-xl font-bold text-brand">${STORE_CONFIG.currency}${p.price.toFixed(2)}</span>
                                 ${p.oldPrice ? `<span class="text-sm text-gray-500 line-through">${STORE_CONFIG.currency}${p.oldPrice.toFixed(2)}</span>` : ''}
@@ -822,7 +880,15 @@
                 </div>
                 <div class="p-8 flex flex-col justify-center">
                     <div class="text-xs text-brand font-bold uppercase tracking-widest mb-2">${p.category}</div>
-                    <h2 class="text-2xl font-bold text-white mb-4 leading-tight">${p.name}</h2>
+                    <h2 class="text-2xl font-bold text-white mb-2 leading-tight">${p.name}</h2>
+                    <!-- Static 5-star rating row for visual consistency in modal -->
+                    <div class="flex items-center gap-1 text-yellow-400 mb-4" aria-label="Rating">
+                        <i class="ph-fill ph-star"></i>
+                        <i class="ph-fill ph-star"></i>
+                        <i class="ph-fill ph-star"></i>
+                        <i class="ph-fill ph-star"></i>
+                        <i class="ph-fill ph-star"></i>
+                    </div>
                     <p class="text-gray-400 mb-6 leading-relaxed">${p.description}</p>
                     
                     <div class="flex items-end gap-3 mb-6">
