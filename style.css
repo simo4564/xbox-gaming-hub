@@ -692,3 +692,12 @@ table th {
   margin: 0.5rem 0;
   color: var(--primary-color);
 }
+
+/* Game images within cards */
+.game-img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  object-fit: cover;
+}
