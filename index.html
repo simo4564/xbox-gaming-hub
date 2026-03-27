@@ -975,8 +975,10 @@
             setYear();
             setupEventListeners();
             await loadProducts();
+            await loadLiveDeals();
             applyInitialRouteState();
             renderFeaturedDeals();
+            renderLiveDeals();
             renderProducts();
             renderRecentlyViewed();
             updateCartUI();
@@ -1038,9 +1040,19 @@
 
         async function loadLiveDeals() {
             const candidates = ['./live-deals.json', '/api/live-deals'];
+            const fetchWithTimeout = async (url, timeoutMs = 3500) => {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+                try {
+                    return await fetch(url, { signal: controller.signal, cache: 'no-store' });
+                } finally {
+                    clearTimeout(timeoutId);
+                }
+            };
+
             for (const url of candidates) {
                 try {
-                    const res = await fetch(url);
+                    const res = await fetchWithTimeout(url);
                     if (!res.ok) throw new Error(`Bad response for ${url}`);
                     const data = await res.json();
                     if (Array.isArray(data) && data.length) {
