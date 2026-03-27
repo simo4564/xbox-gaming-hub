@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 3000;
 const ROOT = __dirname;
 const PRODUCTS_PATH = path.join(ROOT, 'products.json');
 const OFFERS_PATH = path.join(ROOT, 'offer-data.js');
+const LIVE_DEALS_PATH = path.join(ROOT, 'live-deals.json');
 
 app.use(cors());
 app.use(express.json());
@@ -15,6 +16,11 @@ app.use(express.static(ROOT));
 
 function readProducts() {
   return JSON.parse(fs.readFileSync(PRODUCTS_PATH, 'utf8'));
+}
+
+function readLiveDeals() {
+  if (!fs.existsSync(LIVE_DEALS_PATH)) return [];
+  return JSON.parse(fs.readFileSync(LIVE_DEALS_PATH, 'utf8'));
 }
 
 function readOffers() {
@@ -34,6 +40,10 @@ app.get('/api/products', (_req, res) => {
 
 app.get('/api/offers', (_req, res) => {
   res.json(readOffers());
+});
+
+app.get('/api/live-deals', (_req, res) => {
+  res.json(readLiveDeals());
 });
 
 app.post('/api/order-preview', (req, res) => {

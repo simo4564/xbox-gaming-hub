@@ -42,7 +42,7 @@
       "sourceUrl": "https://www.allkeyshop.com/blog/buy-xbox-gift-card-xbox-one-cd-key-compare-prices/",
       "marginPercent": 20,
       "basePriceFallback": 7.92,
-      "image": "assets/gift-card-10-eur.png",
+      "image": "assets/gift-card-10-eur.png?v=3",
       "badge": "",
       "description": "Add funds to your Microsoft account. Buy games, add-ons, and more."
     },
@@ -53,7 +53,7 @@
       "sourceUrl": "https://www.allkeyshop.com/blog/buy-xbox-gift-card-xbox-one-cd-key-compare-prices/",
       "marginPercent": 20,
       "basePriceFallback": 15.67,
-      "image": "assets/gift-card-20-eur.png",
+      "image": "assets/gift-card-20-eur.png?v=3",
       "badge": "",
       "description": "Add funds to your Microsoft account. Buy games, add-ons, and more."
     },
@@ -64,7 +64,7 @@
       "sourceUrl": "https://www.allkeyshop.com/blog/buy-xbox-gift-card-xbox-one-cd-key-compare-prices/",
       "marginPercent": 20,
       "basePriceFallback": 38.75,
-      "image": "assets/gift-card-50-eur.png",
+      "image": "assets/gift-card-50-eur.png?v=3",
       "badge": "Save 7%",
       "description": "Perfect for buying full-priced games or expanding your library."
     },

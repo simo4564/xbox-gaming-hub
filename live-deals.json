@@ -1,0 +1,38 @@
+[
+  {
+    "id": "aks-gpu-30d",
+    "title": "Xbox Game Pass Ultimate - 30 Days",
+    "subtitle": "Allkeyshop comparison baseline",
+    "image": "https://placehold.co/800x500/101418/107C10?text=Xbox+Game+Pass+Ultimate",
+    "marketPrice": 11.49,
+    "storePrice": 13.79,
+    "sourceName": "Allkeyshop",
+    "sourceUrl": "https://www.allkeyshop.com/blog/buy-xbox-game-pass-ultimate-cd-key-compare-prices/",
+    "note": "Use the lowest visible market price as your baseline, then list it at +20% on your storefront.",
+    "updatedAt": "2026-03-27T00:00:00.000Z"
+  },
+  {
+    "id": "aks-core-12m",
+    "title": "Xbox Game Pass Core - 12 Months",
+    "subtitle": "Allkeyshop comparison baseline",
+    "image": "https://placehold.co/800x500/111827/0ea5e9?text=Xbox+Game+Pass+Core",
+    "marketPrice": 43.0,
+    "storePrice": 51.6,
+    "sourceName": "Allkeyshop",
+    "sourceUrl": "https://www.allkeyshop.com/blog/buy-xbox-game-pass-core-cd-key-compare-prices/",
+    "note": "The comparison page highlights roughly \u20ac43 as a benchmark for 12-month Core pricing.",
+    "updatedAt": "2026-03-27T00:00:00.000Z"
+  },
+  {
+    "id": "xboxnow-radar",
+    "title": "Xbox-Now Deal Radar",
+    "subtitle": "Always-updated Xbox Store sales feed",
+    "image": "https://placehold.co/800x500/111111/f97316?text=Xbox-Now+Deals",
+    "marketPrice": null,
+    "storePrice": null,
+    "sourceName": "Xbox-Now",
+    "sourceUrl": "https://www.xbox-now.com/deal-list",
+    "note": "Use Xbox-Now to spot new Xbox Store discounts, then decide what to add to your own catalog and price against Allkeyshop.",
+    "updatedAt": "2026-03-27T00:00:00.000Z"
+  }
+]

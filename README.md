@@ -91,3 +91,11 @@ Then open `http://localhost:3000`.
 
 This bundle now includes `terms.html`, `privacy.html`, and `refund.html` so the Legal links in the footer work correctly.
 It also includes local gift card images inside `assets/` so the gift card products use accurate artwork instead of unrelated external images.
+
+
+## Live deal feed
+
+- `live-deals.json` stores the market-watch cards shown in the **Latest Deal Radar** section.
+- `update-live-deals.js` is the refresh script for that feed. It is designed to use **Xbox-Now** for discovery and **Allkeyshop** for cheapest pricing baselines.
+- Pricing rule: `storePrice = marketPrice * 1.20`.
+- If you update the feed manually, keep the `updatedAt` field current so the frontend shows the correct timestamp.

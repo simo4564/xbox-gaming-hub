@@ -7,7 +7,8 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js",
-    "update-prices": "node update-prices.js"
+    "update-prices": "node update-prices.js",
+    "update-live-deals": "node update-live-deals.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
