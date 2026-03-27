@@ -1,0 +1,15 @@
+{
+  "name": "Gaming Hub",
+  "short_name": "GamingHub",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#0a0e23",
+  "theme_color": "#00aaff",
+  "icons": [
+    {
+      "src": "assets/hero.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

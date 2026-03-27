@@ -1,34 +1,134 @@
 // Interactivity and animations for Gaming Hub
 document.addEventListener('DOMContentLoaded', () => {
-  /* Theme toggle handling */
+  /* Theme toggle handling (dark, light, high contrast) */
   const toggleButton = document.getElementById('theme-toggle');
   const themeIcon = toggleButton ? toggleButton.querySelector('i') : null;
-  const currentTheme = localStorage.getItem('theme') || 'dark';
-
+  const themeOrder = ['dark', 'light', 'high-contrast'];
   function applyTheme(theme) {
+    document.body.classList.remove('light-theme', 'high-contrast');
     if (theme === 'light') {
       document.body.classList.add('light-theme');
       if (themeIcon) {
-        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.remove('fa-sun', 'fa-adjust', 'fa-moon');
         themeIcon.classList.add('fa-moon');
       }
-    } else {
-      document.body.classList.remove('light-theme');
+    } else if (theme === 'high-contrast') {
+      document.body.classList.add('high-contrast');
       if (themeIcon) {
-        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.remove('fa-sun', 'fa-moon');
+        themeIcon.classList.add('fa-adjust');
+      }
+    } else {
+      // dark theme
+      if (themeIcon) {
+        themeIcon.classList.remove('fa-moon', 'fa-adjust');
         themeIcon.classList.add('fa-sun');
       }
     }
     localStorage.setItem('theme', theme);
   }
-
+  let currentTheme = localStorage.getItem('theme') || 'dark';
   applyTheme(currentTheme);
   if (toggleButton) {
     toggleButton.addEventListener('click', () => {
-      const newTheme = document.body.classList.contains('light-theme') ? 'dark' : 'light';
-      applyTheme(newTheme);
+      const index = themeOrder.indexOf(currentTheme);
+      const nextIndex = (index + 1) % themeOrder.length;
+      currentTheme = themeOrder[nextIndex];
+      applyTheme(currentTheme);
     });
   }
+
+  /* Language selection and translation */
+  const languageSelect = document.getElementById('language-select');
+  const translations = {
+    en: {
+      'nav-games': 'Featured Games',
+      'nav-upcoming': 'Upcoming',
+      'nav-plans': 'Plans',
+      'nav-contact': 'Contact',
+      'nav-wishlist': 'Wishlist',
+      'hero-title': 'Discover Amazing Xbox Games',
+      'hero-subtitle': 'Explore top titles, upcoming releases and the right Game Pass plan for you.',
+      'hero-button': 'Compare Plans',
+      'about-heading': 'About Gaming Hub',
+      'games-heading': 'Featured Games',
+      'upcoming-heading': 'Upcoming Releases',
+      'plans-heading': 'Game Pass Plans',
+      'stats-heading': 'Our Impact',
+      'testimonials-heading': 'What Our Players Say',
+      'video-heading': 'Watch Our Trailer',
+      'newsletter-heading': 'Stay in the Loop',
+      'faq-heading': 'Frequently Asked Questions',
+      'wishlist-heading': 'Your Wishlist',
+      'contact-heading': 'Contact Us'
+    },
+    fr: {
+      'nav-games': 'Jeux en vedette',
+      'nav-upcoming': 'À venir',
+      'nav-plans': 'Forfaits',
+      'nav-contact': 'Contact',
+      'nav-wishlist': 'Liste de souhaits',
+      'hero-title': 'Découvrez des jeux Xbox incroyables',
+      'hero-subtitle': 'Explorez les meilleurs titres, les sorties à venir et choisissez le bon forfait Game Pass.',
+      'hero-button': 'Comparer les forfaits',
+      'about-heading': 'À propos de Gaming Hub',
+      'games-heading': 'Jeux en vedette',
+      'upcoming-heading': 'Sorties à venir',
+      'plans-heading': 'Forfaits Game Pass',
+      'stats-heading': 'Notre impact',
+      'testimonials-heading': 'Ce que disent nos joueurs',
+      'video-heading': 'Regardez notre bande-annonce',
+      'newsletter-heading': 'Restez informé',
+      'faq-heading': 'Questions fréquentes',
+      'wishlist-heading': 'Votre liste de souhaits',
+      'contact-heading': 'Contactez-nous'
+    }
+  };
+  function changeLanguage(lang) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (translations[lang] && translations[lang][key]) {
+        el.textContent = translations[lang][key];
+      }
+    });
+    localStorage.setItem('language', lang);
+  }
+  const savedLang = localStorage.getItem('language') || 'en';
+  changeLanguage(savedLang);
+  if (languageSelect) {
+    languageSelect.value = savedLang;
+    languageSelect.addEventListener('change', () => {
+      changeLanguage(languageSelect.value);
+    });
+  }
+
+  /* Dynamic price display */
+  function updatePrices() {
+    document.querySelectorAll('#games .card').forEach(card => {
+      const priceEl = card.querySelector('.price');
+      const addBtn = card.querySelector('.snipcart-add-item');
+      if (priceEl && addBtn && addBtn.dataset.itemPrice) {
+        priceEl.textContent = '$' + parseFloat(addBtn.dataset.itemPrice).toFixed(2);
+      }
+    });
+  }
+  updatePrices();
+  // Attempt to fetch updated prices from prices.json
+  fetch('prices.json')
+    .then(res => res.json())
+    .then(data => {
+      document.querySelectorAll('#games .card').forEach(card => {
+        const addBtn = card.querySelector('.snipcart-add-item');
+        const id = addBtn.dataset.itemId;
+        if (data[id] && data[id].price) {
+          addBtn.dataset.itemPrice = data[id].price;
+        }
+      });
+      updatePrices();
+    })
+    .catch(() => {
+      // ignore errors (file may not exist)
+    });
 
   /* Game search filter */
   const searchInput = document.getElementById('search-input');

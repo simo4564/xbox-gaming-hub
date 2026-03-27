@@ -70,6 +70,34 @@ body {
   color: #00aaff;
 }
 
+/* Language selector styles */
+#language-select {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  background: #14264b;
+  color: #e2e8f0;
+  border: 1px solid #415d9a;
+}
+#language-select option {
+  color: #000;
+}
+
+/* Price display inside cards */
+.card .price {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #00d4ff;
+  margin: 0.5rem 0;
+}
+
+/* High contrast mode (inverts colors for accessibility) */
+body.high-contrast {
+  filter: invert(1) hue-rotate(180deg);
+}
+body.high-contrast img {
+  filter: invert(1) hue-rotate(180deg);
+}
+
 /* Hero section */
 .hero {
   position: relative;
