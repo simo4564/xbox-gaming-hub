@@ -1,0 +1,16 @@
+{
+  "name": "gaming-community-store",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Gaming Community storefront with static frontend and Express backend API.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "update-prices": "node update-prices.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  }
+}

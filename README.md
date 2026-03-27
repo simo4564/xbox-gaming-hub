@@ -64,3 +64,24 @@ The site displays a “Last updated” timestamp in the Digital Store section. I
 - **Compare products**: buyers can compare up to 3 products side by side before deciding.
 - **Activation & Region Guide**: helps customers understand compatibility and what happens after payment.
 - **Featured offer pages**: image-led deals open on dedicated pages with next-step guidance.
+
+
+## Backend Included
+
+This version also includes a simple **Express backend** so the project is no longer frontend-only:
+
+- `server.js` — serves the storefront and exposes API endpoints
+- `GET /api/health` — backend health check
+- `GET /api/products` — product feed
+- `GET /api/offers` — offer feed
+- `POST /api/order-preview` — order preview payload for future checkout workflows
+- `POST /api/newsletter` — newsletter signup endpoint
+
+To run the full stack locally:
+
+```sh
+npm install
+npm start
+```
+
+Then open `http://localhost:3000`.
